@@ -51,7 +51,9 @@ class CharacterDetails extends StatelessWidget {
                       width: MediaQuery.of(context).size.height / 4,
                     ), //, fit: BoxFit.cover,
                   ),
-                  const SizedBox(width: 10,),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   if (Responsive.isDesktop(context))
                     buildDetails(MediaQuery.of(context).size.height / 3),
                 ],
@@ -64,7 +66,13 @@ class CharacterDetails extends StatelessWidget {
               child: Text(desc),
             ),
             Wrap(
-              children: List.generate(racials.length, (index) => buildRacials(racials[index], racials[index].startsWith('-')?Colors.red:Colors.green)),
+              children: List.generate(
+                  racials.length,
+                  (index) => buildRacials(
+                      racials[index],
+                      racials[index].startsWith('-')
+                          ? Colors.red
+                          : Colors.green)),
             ),
           ],
         ),
@@ -74,12 +82,15 @@ class CharacterDetails extends StatelessWidget {
 
   Card buildRacials(String name, Color color) {
     return Card(
-                elevation: 8,
-                color: color,
-                shadowColor: color,
-                margin: const EdgeInsets.all(20),
-                child: Text(name),
-              );
+      elevation: 8,
+      color: color,
+      shadowColor: color,
+      margin: const EdgeInsets.all(20),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(name),
+      ),
+    );
   }
 
   SizedBox buildDetails(width) {
