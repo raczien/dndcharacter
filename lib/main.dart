@@ -61,15 +61,10 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                children: [
-                  Text('Race'),
-                  Text('Class'),
-                  Text('Abilities'),
-                  Text('Description'),
-                ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: buildGenderChanger(),
               ),
-              buildGenderChanger(),
               Expanded(
                 child: SingleChildScrollView(
                   child: Center(
@@ -98,19 +93,29 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 showDialog(
                                                     context: context,
                                                     builder: (context) {
-                                                      return CharacterDetails(ctx: context,name: subraces[index]
+                                                      return CharacterDetails(
+                                                          ctx: context,
+                                                          name: subraces[index]
                                                                   ['name']
-                                                              as String, img: subraces[index]
+                                                              as String,
+                                                          img: subraces[index]
                                                                   [pickedGender]
-                                                              as String, desc: subraces[index][
-                                                                  'description']
-                                                              as String, size: subraces[index]
+                                                              as String,
+                                                          desc: subraces[index]
+                                                                  ['description']
+                                                              as String,
+                                                          size: subraces[index]
                                                                   ['size']
-                                                              as String, kg: subraces[index]
+                                                              as String,
+                                                          kg: subraces[index]
                                                                   ['weight']
-                                                              as String, age: subraces[index]
+                                                              as String,
+                                                          age: subraces[index]
                                                                   ['maxAge']
-                                                              as String, racials: subraces[index]['racials'] as List<String>);
+                                                              as String,
+                                                          racials: subraces[index]
+                                                                  ['racials']
+                                                              as List<String>);
                                                     });
                                               },
                                               title: Row(
@@ -172,9 +177,22 @@ class _MyHomePageState extends State<MyHomePage> {
                                       showDialog(
                                           context: context,
                                           builder: (context) {
-                                            return CharacterDetails(ctx: context, name: subraces[0]['name'] as String, img: subraces[0][pickedGender]
-                                                  as String, desc: subraces[0]['description']
-                                                  as String, size: subraces[0]['size'] as String, kg: subraces[0]['weight'] as String, age: subraces[0]['maxAge'] as String, racials: subraces[0]['racials'] as List<String>);
+                                            return CharacterDetails(
+                                                ctx: context,
+                                                name: subraces[0]['name']
+                                                    as String,
+                                                img: subraces[0][pickedGender]
+                                                    as String,
+                                                desc: subraces[0]['description']
+                                                    as String,
+                                                size: subraces[0]['size']
+                                                    as String,
+                                                kg: subraces[0]['weight']
+                                                    as String,
+                                                age: subraces[0]['maxAge']
+                                                    as String,
+                                                racials: subraces[0]['racials']
+                                                    as List<String>);
                                           });
                                     },
                                     title: TileData(
@@ -196,7 +214,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-
 
   SizedBox buildGenderChanger() {
     return SizedBox(

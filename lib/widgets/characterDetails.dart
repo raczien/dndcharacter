@@ -74,6 +74,41 @@ class CharacterDetails extends StatelessWidget {
                           ? Colors.red
                           : Colors.green)),
             ),
+            const Divider(),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.red.shade900),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        'Zurück',
+                        style: TextStyle(fontSize: 25),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.green.shade900),
+                      onPressed: () {},
+                      child: const Text(
+                        'Bestätigen',
+                        style: TextStyle(fontSize: 25),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
