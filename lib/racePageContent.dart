@@ -8,7 +8,7 @@ class RacePageContent extends StatefulWidget {
   const RacePageContent({Key? key, required this.incrementPageIndex})
       : super(key: key);
 
-  final VoidCallback incrementPageIndex;
+  final Function incrementPageIndex;
   @override
   State<RacePageContent> createState() => _RacePageContentState();
 }
@@ -40,128 +40,142 @@ class _RacePageContentState extends State<RacePageContent> {
         Expanded(
           child: SingleChildScrollView(
             child: Center(
-              child: SizedBox(
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
                 width: Responsive.isDesktop(context)
                     ? MediaQuery.of(context).size.width / 2
                     : double.infinity,
-                child: Column(
-                  children: [
-                    ...List.generate(races.length, (index) {
-                      var subraces =
-                          races[index]['subraces'] as List<Map<String, Object>>;
-                      return subraces.length > 1
-                          ? ExpansionTile(
-                              textColor: Colors.teal.shade900,
-                              childrenPadding: const EdgeInsets.all(10),
-                              title: TileData(
-                                subraces: subraces,
-                                index: index,
-                                pickedGender: pickedGender,
-                              ),
-                              children: List.generate(
-                                  subraces.length,
-                                  (index) => ListTile(
-                                        onTap: () {
-                                          showDialog(
-                                              context: context,
-                                              builder: (context) {
-                                                return CharacterDetails(
-                                                  ctx: context,
-                                                  name: subraces[index]['name']
-                                                      as String,
-                                                  img: subraces[index]
-                                                      [pickedGender] as String,
-                                                  desc: subraces[index]
-                                                      ['description'] as String,
-                                                  size: subraces[index]['size']
-                                                      as String,
-                                                  kg: subraces[index]['weight']
-                                                      as String,
-                                                  age: subraces[index]['maxAge']
-                                                      as String,
-                                                  racials: subraces[index]
-                                                          ['racials']
-                                                      as List<String>,
-                                                  increment:
-                                                      widget.incrementPageIndex,
-                                                );
-                                              });
-                                        },
-                                        title: Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 15, left: 40),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                    width: 2,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Column(
+                    children: [
+                      ...List.generate(races.length, (index) {
+                        var subraces = races[index]['subraces']
+                            as List<Map<String, Object>>;
+                        return subraces.length > 1
+                            ? ExpansionTile(
+                                textColor: Colors.teal.shade900,
+                                childrenPadding: const EdgeInsets.all(10),
+                                title: TileData(
+                                  subraces: subraces,
+                                  index: index,
+                                  pickedGender: pickedGender,
+                                ),
+                                children: List.generate(
+                                    subraces.length,
+                                    (index) => ListTile(
+                                          onTap: () {
+                                            showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return CharacterDetails(
+                                                    ctx: context,
+                                                    name: subraces[index]
+                                                        ['name'] as String,
+                                                    img: subraces[index]
+                                                            [pickedGender]
+                                                        as String,
+                                                    desc: subraces[index]
+                                                            ['description']
+                                                        as String,
+                                                    size: subraces[index]
+                                                        ['size'] as String,
+                                                    kg: subraces[index]
+                                                        ['weight'] as String,
+                                                    age: subraces[index]
+                                                        ['maxAge'] as String,
+                                                    racials: subraces[index]
+                                                            ['racials']
+                                                        as List<String>,
+                                                    increment: widget
+                                                        .incrementPageIndex,
+                                                  );
+                                                });
+                                          },
+                                          title: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 15, left: 40),
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                      width: 2,
+                                                    ),
+                                                  ),
+                                                  child: Image.asset(
+                                                    fit: BoxFit.cover,
+                                                    height: Responsive.isMobile(
+                                                            context)
+                                                        ? 60.0
+                                                        : 140.0,
+                                                    width: Responsive.isMobile(
+                                                            context)
+                                                        ? 60.0
+                                                        : 140.0,
+                                                    subraces[index]
+                                                            [pickedGender]
+                                                        as String,
                                                   ),
                                                 ),
-                                                child: Image.asset(
-                                                  fit: BoxFit.cover,
-                                                  height: Responsive.isMobile(
-                                                          context)
-                                                      ? 60.0
-                                                      : 140.0,
-                                                  width: Responsive.isMobile(
-                                                          context)
-                                                      ? 60.0
-                                                      : 140.0,
-                                                  subraces[index][pickedGender]
-                                                      as String,
+                                              ),
+                                              Flexible(
+                                                child: Text(
+                                                  '${subraces[index]['name']}',
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: TextStyle(
+                                                      color:
+                                                          Colors.teal.shade900,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize:
+                                                          Responsive.isMobile(
+                                                                  context)
+                                                              ? 28.0
+                                                              : 40),
                                                 ),
                                               ),
-                                            ),
-                                            Flexible(
-                                              child: Text(
-                                                '${subraces[index]['name']}',
-                                                overflow: TextOverflow.ellipsis,
-                                                style: TextStyle(
-                                                    color: Colors.teal.shade900,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize:
-                                                        Responsive.isMobile(
-                                                                context)
-                                                            ? 28.0
-                                                            : 40),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      )),
-                            )
-                          : ListTile(
-                              onTap: () {
-                                print(races[index]['race']);
-                                print(subraces[0]['racials']);
-                                showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return CharacterDetails(
-                                        ctx: context,
-                                        name: subraces[0]['name'] as String,
-                                        img:
-                                            subraces[0][pickedGender] as String,
-                                        desc: subraces[0]['description']
-                                            as String,
-                                        size: subraces[0]['size'] as String,
-                                        kg: subraces[0]['weight'] as String,
-                                        age: subraces[0]['maxAge'] as String,
-                                        racials: subraces[0]['racials']
-                                            as List<String>,
-                                        increment: widget.incrementPageIndex,
-                                      );
-                                    });
-                              },
-                              title: TileData(
-                                subraces: subraces,
-                                index: index,
-                                pickedGender: pickedGender,
-                              ),
-                            );
-                    })
-                  ],
+                                            ],
+                                          ),
+                                        )),
+                              )
+                            : ListTile(
+                                onTap: () {
+                                  print(races[index]['race']);
+                                  print(subraces[0]['racials']);
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return CharacterDetails(
+                                          ctx: context,
+                                          name: subraces[0]['name'] as String,
+                                          img: subraces[0][pickedGender]
+                                              as String,
+                                          desc: subraces[0]['description']
+                                              as String,
+                                          size: subraces[0]['size'] as String,
+                                          kg: subraces[0]['weight'] as String,
+                                          age: subraces[0]['maxAge'] as String,
+                                          racials: subraces[0]['racials']
+                                              as List<String>,
+                                          increment: widget.incrementPageIndex,
+                                        );
+                                      });
+                                },
+                                title: TileData(
+                                  subraces: subraces,
+                                  index: index,
+                                  pickedGender: pickedGender,
+                                ),
+                              );
+                      })
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -183,10 +197,10 @@ class _RacePageContentState extends State<RacePageContent> {
           Icon(
             Icons.male,
             size: 60,
-            color: pickedGender == 'male' ? Colors.teal : Colors.grey,
+            color: pickedGender == 'male' ? Colors.white : Colors.grey.shade800,
           ),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(primary: Colors.teal),
+            style: ElevatedButton.styleFrom(primary: Colors.teal.shade900),
             onPressed: () {
               setState(() {
                 if (pickedGender == 'male') {
@@ -204,7 +218,8 @@ class _RacePageContentState extends State<RacePageContent> {
           Icon(
             Icons.female,
             size: 60,
-            color: pickedGender == 'female' ? Colors.teal : Colors.grey,
+            color:
+                pickedGender == 'female' ? Colors.white : Colors.grey.shade800,
           ),
         ],
       ),

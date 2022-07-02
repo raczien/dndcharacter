@@ -56,8 +56,21 @@ flutter:
     - assets/orc/male.jpg
     - assets/tiefling/female.jpg
     - assets/tiefling/male.jpg
+    - assets/classes/barbar.jpeg
+    - assets/classes/barde.jpeg
+    - assets/classes/druide.jpeg
+    - assets/classes/gladiator.jpeg
+    - assets/classes/hexenmeister.jpeg
+    - assets/classes/Jäger.jpeg
+    - assets/classes/kleriker.jpeg
+    - assets/classes/magier.jpeg
+    - assets/classes/mönch.jpeg
+    - assets/classes/paladin.jpeg
+    - assets/classes/schurke.jpeg
+    - assets/classes/zauberer.jpeg
     - assets/bg.jpg
     - assets/bg2.jpg
+    - assets/bg3.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

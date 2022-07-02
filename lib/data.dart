@@ -9,8 +9,13 @@ var races = [
         'size': '1,73 - 1,81 Meter',
         'weight': 'bis zu 85 KG',
         'maxAge': '~70 Jahre',
-        'description': 'Die Argonier sind echsenartige, jedoch humanoide Wesen. Sie können unter Wasser atmen und sind immun gegen Krankheiten und viele Gifte.\nSie sind flink im Wasser und unebenen Gebieten und Experten in Sachen Natur und Kräuter. Sie sind schlau und flink, werden alelrdings von manch anderen Rassen wegen ihres aussehens verachtet.',
-        'racials': ['+Wasseratmung', '+Krankheitsimmunität', '-Hitzeempfindlich', '+Giftresistenz',],
+        'description':
+            'Die Argonier sind echsenartige, jedoch humanoide Wesen. Sie können unter Wasser atmen und sind immun gegen Krankheiten und viele Gifte.\nSie sind flink im Wasser und unebenen Gebieten und Experten in Sachen Natur und Kräuter. Sie sind schlau und flink, werden alelrdings von manch anderen Rassen wegen ihres aussehens verachtet.',
+        'racials': [
+          '+Wasseratmung',
+          '+Krankheitsimmunität',
+          '+Giftresistenz',
+        ],
       },
     ],
   },
@@ -25,7 +30,13 @@ var races = [
         'weight': 'bis zu 42 KG',
         'maxAge': '~550 Jahre',
         'description': 'Rasse der Elfen',
-        'racials': ['1', '2', '3'],
+        'racials': [
+          '+Dunkelsicht',
+          '+Geschärfte Sinne',
+          '+Fey Abstammung',
+          '+Maske der Wildnis',
+          '+Intelligenz',
+        ],
       },
       {
         'name': 'Dunkel- Elf(e)',
@@ -35,7 +46,12 @@ var races = [
         'weight': 'bis zu 45 KG',
         'maxAge': '~500 Jahre',
         'description': 'Rasse der Dunkel- Elfen',
-        'racials': ['1', '2', '3'],
+        'racials': [
+          '+Dunkelsicht',
+          '+Geschärfte Sinne',
+          '+Fey Abstammung',
+          '+Geschicklichkeit'
+        ],
       },
     ],
   },
@@ -50,7 +66,11 @@ var races = [
         'weight': 'bis zu 50 KG',
         'maxAge': '~200',
         'description': 'Rasse der Gnome',
-        'racials': ['1', '2', '3'],
+        'racials': [
+          '+Glück',
+          '+Verstohlen',
+          '+Giftresstenz',
+        ],
       },
     ],
   },
@@ -64,8 +84,12 @@ var races = [
         'size': '1,60 - 1,90 Meter',
         'weight': 'bis zu 110 KG',
         'maxAge': '~80 Jahre',
-        'description': 'Die Menschen sind die anpassungsstärkste und ambitionierteste Rasse. Die haben eine kleinere Lebensspanne und sind keine magischen Wesen, was sie aber durch ihre Willensstärke und Durchsetzungsfähigkeit keineswegs schwächer machen.\nMenschen sind meist Teamplayer, Abenteurer und ziehen alles durch, was sie angefangen haben.',
-        'racials': ['1', '2', '3'],
+        'description':
+            'Die Menschen sind die anpassungsstärkste und ambitionierteste Rasse. Die haben eine kleinere Lebensspanne und sind keine magischen Wesen, was sie aber durch ihre Willensstärke und Durchsetzungsfähigkeit keineswegs schwächer machen.\nMenschen sind meist Teamplayer, Abenteurer und ziehen alles durch, was sie angefangen haben.',
+        'racials': [
+          '+Sprachen',
+          '+Ausdauernd',
+        ],
       },
       {
         'name': 'Gesetzlose(r)',
@@ -75,7 +99,11 @@ var races = [
         'weight': 'bis zu 110 KG',
         'maxAge': '~80 Jahre',
         'description': '',
-        'racials': ['1', '2', '3'],
+        'racials': [
+          '+Sprachen',
+          '+Ausdauernd',
+          '+1 Feat',
+        ],
       },
     ],
   },
@@ -89,8 +117,14 @@ var races = [
         'size': '1,85 - 2,05 Meter',
         'weight': 'bis zu 130 KG',
         'maxAge': '~60 Jahre',
-        'description': 'Die Orks sind reine Krieger, die das Kämpfen lieben. Sie sind sehr schmerzresistent und auch wenn sie viele für brutale Mörder halten eher auf ebenbürtige Kämpfe aus, anstatt sich an Hilflosen zu vergehen.\nStärke und ausdauer prägen sie, als auch der Umgang mit Zweihandwaffen.',
-        'racials': ['1', '2', '3'],
+        'description':
+            'Die Orks sind reine Krieger, die das Kämpfen lieben. Sie sind sehr schmerzresistent und auch wenn sie viele für brutale Mörder halten eher auf ebenbürtige Kämpfe aus, anstatt sich an Hilflosen zu vergehen.\nStärke und ausdauer prägen sie, als auch der Umgang mit Zweihandwaffen.',
+        'racials': [
+          '+Einschüchternd',
+          '+Dunkelsicht',
+          '+Extremer Wiederstand',
+          '+Verherender Schlag',
+        ],
       },
     ],
   },
@@ -104,8 +138,13 @@ var races = [
         'size': '1,78 - 2,05 Meter',
         'weight': 'bis zu 105 KG',
         'maxAge': '~100 Jahre',
-        'description': 'Tieflinge sind halb Mensch, halb Dämon. Sie sind nicht von Natur aus böse, jedoch werden sie wegen ihres aussehens und ihrer magischen Kräfte oft für böse gehalten.\nSie sind immun gegen viele statusverändernde Magie und können auf kurze Sicht im dunkeln sehen. Sie sind extrem Stark, haben aber dafür nicht so starke Ausdauer.',
-        'racials': ['1', '2', '3'],
+        'description':
+            'Tieflinge sind halb Mensch, halb Dämon. Sie sind nicht von Natur aus böse, jedoch werden sie wegen ihres aussehens und ihrer magischen Kräfte oft für böse gehalten.\nSie sind immun gegen viele statusverändernde Magie und können auf kurze Sicht im dunkeln sehen. Sie sind extrem Stark, haben aber dafür nicht so starke Ausdauer.',
+        'racials': [
+          '+Dunkelsicht',
+          '+Feuerresistenz',
+          '+Thaumaturgie',
+        ],
       },
     ],
   },
@@ -119,8 +158,14 @@ var races = [
         'size': '1,0 - 1,2 Meter',
         'weight': 'bis zu 70 KG',
         'maxAge': '~250 Jahre',
-        'description': 'Zwerge sind kühn und robust. Sie sind als talentierte und furchtlose Krieger, exzellente Bergbauer, sowie für ihre Metallverarbeitung und Handwerkskunst bekannt.\nZwerge sind zwar nicht die schnellsten, besitzen dafür aber eine starke AUsdauer. Zwerge sind klug und haben ein großes Interesse an wirtschaftlichem Fortschritt.',
-        'racials': ['1', '2', '3'],
+        'description':
+            'Zwerge sind kühn und robust. Sie sind als talentierte und furchtlose Krieger, exzellente Bergbauer, sowie für ihre Metallverarbeitung und Handwerkskunst bekannt.\nZwerge sind zwar nicht die schnellsten, besitzen dafür aber eine starke AUsdauer. Zwerge sind klug und haben ein großes Interesse an wirtschaftlichem Fortschritt.',
+        'racials': [
+          '+Wiederstand',
+          '+Ausdauernd',
+          '+Zwergische Zähigkeit',
+          '+Schwere Rüstung',
+        ],
       },
       {
         'name': 'Berg- Zwerg',
@@ -129,8 +174,14 @@ var races = [
         'size': '1,0 - 1,1 Meter',
         'weight': 'bis zu 68 KG',
         'maxAge': '~270 Jahre',
-        'description': 'Zwerge sind kühn und robust. Sie sind als talentierte und furchtlose Krieger, exzellente Bergbauer, sowie für ihre Metallverarbeitung und Handwerkskunst bekannt.\nAls ein Berg- Zwerg bist du stark und wiederstandsfähig. Raues Wetter, sowie Kälte und Nässe macht dir nichts aus. Berg-Zwerge sind zu dem extremst ausdauernd und haben ein sehr starkes Durchhaltevermögen.',
-        'racials': ['1', '2', '3'],
+        'description':
+            'Zwerge sind kühn und robust. Sie sind als talentierte und furchtlose Krieger, exzellente Bergbauer, sowie für ihre Metallverarbeitung und Handwerkskunst bekannt.\nAls ein Berg- Zwerg bist du stark und wiederstandsfähig. Raues Wetter, sowie Kälte und Nässe macht dir nichts aus. Berg-Zwerge sind zu dem extremst ausdauernd und haben ein sehr starkes Durchhaltevermögen.',
+        'racials': [
+          '+Dunkelsicht',
+          '+Wiederstand',
+          '+Leichte/Mittlere Rüstung',
+          '+Handwerkskunst',
+        ],
       },
       {
         'name': 'Dunkel- Zwerg',
@@ -139,9 +190,176 @@ var races = [
         'size': '1,0 - 1,2 Meter',
         'weight': 'bis zu 71 KG',
         'maxAge': '~300 Jahre',
-        'description': 'Zwerge sind kühn und robust. Sie sind als talentierte und furchtlose Krieger, exzellente Bergbauer, sowie für ihre Metallverarbeitung und Handwerkskunst bekannt.\nDunkel- Zwerge haben geschärfte Sinne, starke Intuition und die größte Wiedderstandskraft von allen Zwergen - eine wahre Kämpfernatur.',
-        'racials': ['1', '2', '3'],
+        'description':
+            'Zwerge sind kühn und robust. Sie sind als talentierte und furchtlose Krieger, exzellente Bergbauer, sowie für ihre Metallverarbeitung und Handwerkskunst bekannt.\nDunkel- Zwerge haben geschärfte Sinne, starke Intuition und die größte Wiedderstandskraft von allen Zwergen - eine wahre Kämpfernatur.',
+        'racials': [
+          '+Dunkelsicht',
+          '+Unbeugsamkeit',
+        ],
       },
     ],
+  },
+];
+
+// Attribute modificator = (Wert - 10) / 2
+// Attributes = [15, 14, 13, 12, 10, 8]
+// Armor = 10 + Geschickmod
+// Tools und Waffen gebe ich aus
+var classes = [
+  {
+    'name': 'Barbar',
+    'image': 'assets/classes/barbar.jpeg',
+    'description':
+        'Ein furchtloser Krieger mit primitiver Herkunft, der eine Kampfeszorn- Fähigkeit besitzt.',
+    'dmgdice': 'w12',
+    'primaryStat': 'Stärke',
+    'save': 'Stärke & Konstitution',
+    'armor': 'Leichte, Mittlere, Schilde',
+    'weapons': 'Zweihandaxt oder zwei Einhandäxte',
+    'skills': [31, 42, 44],
+    'skillNum': 3,
+  },
+  {
+    'name': 'Barde',
+    'image': 'assets/classes/barde.jpeg',
+    'description':
+        'Ein inspirierender Magier, dessen Kraft die Musik der Schöpfung widerspiegelt.',
+    'dmgdice': 'w8',
+    'primaryStat': 'Charisma',
+    'save': 'Charisma & Geschicklichkeit',
+    'armor': 'Leichte',
+    'weapons': 'Einhandwaffen',
+    'skills': [], // any 3
+    'skillNum': 3,
+  },
+  {
+    'name': 'Druide',
+    'image': 'assets/classes/druide.jpeg',
+    'description':
+        'Ein Priester des alten Glaubens, der die Kräfte der Natur beherrscht und Tiergestalt annehmen kann.',
+    'dmgdice': 'w8',
+    'primaryStat': 'Weisheit',
+    'save': 'Intelligenz & Weisheit',
+    'armor': 'Leichte und Mittlere',
+    'weapons': 'Keulen, Dolche, Speere, Stäbe',
+    'skills': [42, 36, 39, 34],
+    'skillNum': 3,
+  },
+  {
+    'name': 'Gladiator',
+    'image': 'assets/classes/gladiator.jpeg',
+    'description':
+        'Meister der Kampfkunst, der sich auf den Einzelkampf spiezialisiert hat und mit vielen verschiedenen Waffen umgehen kann.',
+    'dmgdice': 'w10',
+    'primaryStat': 'Stärke',
+    'save': 'Stärke & Konstitution',
+    'armor': 'Alle, Schilde (optional)',
+    'weapons': 'Alle normale Nahkampfwaffen',
+    'skills': [42, 27, 31],
+    'skillNum': 3,
+  },
+  {
+    'name': 'Hexenmeister',
+    'image': 'assets/classes/hexenmeister.jpeg',
+    'description':
+        'Ein Nutzer von Magie, die er aus einem Handel mit finsteren Gestalten bekommt, die nicht von dieser Welt sind.',
+    'dmgdice': 'd8',
+    'primaryStat': 'Charisma',
+    'save': 'Weisheit & Charisma',
+    'armor': 'Leichte',
+    'weapons': 'Magische Waffen, wie Stäbe, Keulen, Bücher',
+    'skills': [28, 38, 43],
+    'skillNum': 3,
+  },
+  {
+    'name': 'Jäger',
+    'image': 'assets/classes/Jäger.jpeg',
+    'description':
+        'Rubuste Krieger - Exerte in Fährtenlesen, Fallen, Wäldern und Tieren.',
+    'dmgdice': 'w10',
+    'primaryStat': 'Geschicklichkeit & Weisheit',
+    'save': 'Stärke & Geschicklichkeit',
+    'armor': 'Leichte, Mittlere',
+    'weapons': 'Bögen oder Armbrüste und Einhandwaffe',
+    'skills': [36, 27, 38, 44],
+    'skillNum': 4,
+  },
+  {
+    'name': 'Kleriker',
+    'image': 'assets/classes/kleriker.jpeg',
+    'description':
+        'Ein priesterlicher Champion, der göttliche Magie im Dienste einer höheren Macht einsetzt',
+    'dmgdice': 'w8',
+    'primaryStat': 'Weisheit',
+    'save': 'Weisheit & Charisma',
+    'armor': '',
+    'weapons': '',
+    'skills': [33, 34, 43, 37],
+    'skillNum': 4,
+  },
+  {
+    'name': 'Magier',
+    'image': 'assets/classes/magier.jpeg',
+    'description':
+        'Ein Weiser und Gelehrter Magier, der die Fähigkeit besitzt die Struktur der Realität zu verändern.',
+    'dmgdice': 'd6',
+    'primaryStat': 'Intelligenz',
+    'save': 'Intelligenz & Weisheit',
+    'armor': 'Keine',
+    'weapons': 'Dolche, Stäbe',
+    'skills': [28, 38, 44, 33],
+    'skillNum': 4,
+  },
+  {
+    'name': 'Mönch',
+    'image': 'assets/classes/mönch.jpeg',
+    'description':
+        'Ein Meister der Kampfkunst, der Körper und Geist gleichermaßen stählt.',
+    'dmgdice': 'w8',
+    'primaryStat': 'Geschicklichkeit & Weisheit',
+    'save': 'Stärke & Geschicklichkeit',
+    'armor': 'Light',
+    'weapons': 'Einfache Nahkampfwaffen, Faustwaffen',
+    'skills': [27, 29, 40],
+    'skillNum': 3,
+  },
+  {
+    'name': 'Paladin',
+    'image': 'assets/classes/paladin.jpeg',
+    'description':
+        'Ein heiliger Krieger, der an einen heiligen Eid gebunden ist.',
+    'dmgdice': 'w10',
+    'primaryStat': 'Stärke & Charisma',
+    'save': 'Weisheit & Charisma',
+    'armor': 'Schwere, Schilde',
+    'weapons': 'Einhandwaffen',
+    'skills': [43, 30, 40],
+    'skillNum': 3,
+  },
+  {
+    'name': 'Schurke',
+    'image': 'assets/classes/schurke.jpeg',
+    'description':
+        'Ein Schurke, der Verstohlenheit und Tricks einsetzt, um Hindernisse und Feinde zu überwinden',
+    'dmgdice': 'd8',
+    'primaryStat': 'Geschicklichkeit',
+    'save': 'Geschicklichkeit & Intelligenz',
+    'armor': 'Leichte',
+    'weapons': 'Zwei Einhandwaffen',
+    'skills': [41, 35, 44, 32],
+    'skillNum': 4,
+  },
+  {
+    'name': 'Zauberer',
+    'image': 'assets/classes/zauberer.jpeg',
+    'description':
+        'Ein Zauberwirker, der seine Magie durch eine Gabe oder aus seiner Vererbung bekam.',
+    'dmgdice': 'd6',
+    'primaryStat': 'Charisma',
+    'save': 'Charisma & Konstitution',
+    'armor': 'None',
+    'weapons': 'Dolch, Stäbe',
+    'skills': [28, 30, 38],
+    'skillNum': 3,
   },
 ];

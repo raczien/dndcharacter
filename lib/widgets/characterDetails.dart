@@ -24,7 +24,7 @@ class CharacterDetails extends StatelessWidget {
   final String kg;
   final String age;
   final List<String> racials;
-  final VoidCallback increment;
+  final Function increment;
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +102,7 @@ class CharacterDetails extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                           primary: Colors.green.shade900),
                       onPressed: () {
-                        increment();
+                        increment(true);
                         Navigator.pop(context);
                       },
                       child: const Text(

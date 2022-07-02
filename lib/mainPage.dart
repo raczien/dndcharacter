@@ -12,9 +12,14 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int index = 0;
 
-  void _incrementIndex() {
+  void _incrementIndex(bool b) {
+    // maybe go back in input string
     setState(() {
-      index++;
+      if (b) {
+        index++;
+      } else {
+        index--;
+      }
     });
   }
 
@@ -29,7 +34,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/bg2.jpg'),
             fit: BoxFit.cover,
