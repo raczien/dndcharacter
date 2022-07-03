@@ -11,6 +11,8 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int index = 0;
+  Color activeColor = Colors.teal.shade900;
+  Color? inactiveColor = Colors.grey[800];
 
   void _incrementIndex(bool b) {
     // maybe go back in input string
@@ -34,7 +36,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/bg2.jpg'),
             fit: BoxFit.cover,
@@ -42,12 +44,72 @@ class _MainPageState extends State<MainPage> {
         ),
         child: Column(
           children: [
-            Row(
-              children: [
-                Text('asdasdasdasd'),
-                Text('asdasdasdasd'),
-                Text('asdasdasdasd'),
-              ],
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: SizedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Card(
+                      color: index == 0 ? activeColor : inactiveColor,
+                      elevation: 8,
+                      shadowColor: Colors.white,
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text(
+                          'Rasse',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: (index == 0)
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: index == 1 ? activeColor : inactiveColor,
+                      elevation: 8,
+                      shadowColor: Colors.white,
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text(
+                          'Klasse',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: (index == 1)
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: index == 2 ? activeColor : inactiveColor,
+                      elevation: 8,
+                      shadowColor: Colors.white,
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text(
+                          'Attribute',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: (index == 2)
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
             Expanded(
               child: _widgetOptions()[index], //RacePageContent(),

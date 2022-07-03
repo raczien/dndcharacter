@@ -27,7 +27,7 @@ class ClassPageContent extends StatelessWidget {
                   classes.length,
                   (index) => ExpansionTile(
                     expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                    trailing: Icon(
+                    trailing: const Icon(
                       Icons.arrow_downward_outlined,
                       size: 40,
                     ),
@@ -66,11 +66,83 @@ class ClassPageContent extends StatelessWidget {
                     ),
                     children: [
                       buildClassDetails(index, 'Beschreibung', 'description'),
+                      const Divider(),
                       buildClassDetails(index, 'Schadenswürfel', 'dmgdice'),
+                      const Divider(),
                       buildClassDetails(index, 'Primär- Stat', 'primaryStat'),
+                      const Divider(),
                       buildClassDetails(index, 'Save Stats', 'save'),
+                      const Divider(),
                       buildClassDetails(index, 'Rüstung', 'armor'),
+                      const Divider(),
                       buildClassDetails(index, 'Waffen', 'weapons'),
+                      const Divider(),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 100.0, right: 100),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const Text('Fertigkeiten:',
+                                style: TextStyle(
+                                    fontSize: 34,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold)),
+                            ...List.generate(
+                                (classes[index]['skills'] as List<dynamic>)
+                                    .length, (i) {
+                              var skills =
+                                  classes[index]['skills'] as List<dynamic>;
+                              return Text(
+                                getSkillName(skills[i]),
+                                softWrap: true,
+                                style: const TextStyle(
+                                  fontSize: 30,
+                                  color: Colors.black,
+                                ),
+                              );
+                            }),
+                          ],
+                        ),
+                      ),
+                      if ((classes[index]['skillNum']) as int >
+                          ((classes[index]['skills'] as List<dynamic>).length))
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(left: 100.0, right: 100),
+                          child: ((classes[index]['skills'] as List<dynamic>)
+                                  .isNotEmpty)
+                              ? Text(
+                                  'Und ${((classes[index]['skillNum']) as int) - (classes[index]['skills'] as List<dynamic>).length} deiner Wahl.',
+                                  softWrap: true,
+                                  style: const TextStyle(
+                                    fontSize: 30,
+                                    color: Colors.black,
+                                  ),
+                                )
+                              : Text(
+                                  '${((classes[index]['skillNum']) as int) - (classes[index]['skills'] as List<dynamic>).length} deiner Wahl.',
+                                  softWrap: true,
+                                  style: const TextStyle(
+                                    fontSize: 30,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                        ),
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Center(
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.green.shade700),
+                            child: const Text(
+                              'Bestätigen',
+                              style: TextStyle(fontSize: 30),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -84,21 +156,24 @@ class ClassPageContent extends StatelessWidget {
 
   Padding buildClassDetails(int index, String typeName, String type) {
     return Padding(
-      padding: const EdgeInsets.only(left: 25.0),
+      padding: const EdgeInsets.only(left: 100.0, right: 100),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text('$typeName:',
-              style: const TextStyle(
-                  fontSize: 30,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold)),
+          SizedBox(
+            width: double.infinity,
+            child: Text('$typeName:',
+                style: const TextStyle(
+                    fontSize: 34,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold)),
+          ),
           Text(
             '${classes[index][type]}',
             softWrap: true,
             style: const TextStyle(
-              fontSize: 26,
+              fontSize: 30,
               color: Colors.black,
             ),
           )

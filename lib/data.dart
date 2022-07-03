@@ -15,7 +15,8 @@ var races = [
           '+Wasseratmung',
           '+Krankheitsimmunität',
           '+Giftresistenz',
-        ],
+        ], // Str, Ges, Kon, Int, Wei, Cha
+        'boni': [0, 2, 0, 0, 1, 0],
       },
     ],
   },
@@ -36,7 +37,8 @@ var races = [
           '+Fey Abstammung',
           '+Maske der Wildnis',
           '+Intelligenz',
-        ],
+        ], // Str, Ges, Kon, Int, Wei, Cha
+        'boni': [0, 0, 0, 1, 0, 0],
       },
       {
         'name': 'Dunkel- Elf(e)',
@@ -51,7 +53,8 @@ var races = [
           '+Geschärfte Sinne',
           '+Fey Abstammung',
           '+Geschicklichkeit'
-        ],
+        ], // Str, Ges, Kon, Int, Wei, Cha
+        'boni': [0, 1, 0, 0, 0, 0],
       },
     ],
   },
@@ -65,12 +68,14 @@ var races = [
         'size': '1,0 - 1,1 Meter',
         'weight': 'bis zu 50 KG',
         'maxAge': '~200',
-        'description': 'Rasse der Gnome',
+        'description':
+            'Als kleinste Rasse sind sie auch flink und werden zunächst als ungefährlich und freundlich eingestuft.',
         'racials': [
           '+Glück',
           '+Verstohlen',
           '+Giftresstenz',
-        ],
+        ], // Str, Ges, Kon, Int, Wei, Cha
+        'boni': [0, 1, 0, 0, 0, 1],
       },
     ],
   },
@@ -89,7 +94,9 @@ var races = [
         'racials': [
           '+Sprachen',
           '+Ausdauernd',
-        ],
+          '+Stärke',
+        ], // Str, Ges, Kon, Int, Wei, Cha
+        'boni': [1, 0, 1, 0, 0, 1],
       },
       {
         'name': 'Gesetzlose(r)',
@@ -101,9 +108,10 @@ var races = [
         'description': '',
         'racials': [
           '+Sprachen',
-          '+Ausdauernd',
+          '+Gechick',
           '+1 Feat',
-        ],
+        ], // Str, Ges, Kon, Int, Wei, Cha
+        'boni': [0, 2, 0, 0, 0, 0],
       },
     ],
   },
@@ -124,7 +132,8 @@ var races = [
           '+Dunkelsicht',
           '+Extremer Wiederstand',
           '+Verherender Schlag',
-        ],
+        ], // Str, Ges, Kon, Int, Wei, Cha
+        'boni': [1, 0, 1, 0, 0, 0],
       },
     ],
   },
@@ -144,7 +153,8 @@ var races = [
           '+Dunkelsicht',
           '+Feuerresistenz',
           '+Thaumaturgie',
-        ],
+        ], // Str, Ges, Kon, Int, Wei, Cha
+        'boni': [0, 0, 0, 1, 0, 1],
       },
     ],
   },
@@ -165,7 +175,8 @@ var races = [
           '+Ausdauernd',
           '+Zwergische Zähigkeit',
           '+Schwere Rüstung',
-        ],
+        ], // Str, Ges, Kon, Int, Wei, Cha
+        'boni': [0, 0, 0, 1, 1, 0],
       },
       {
         'name': 'Berg- Zwerg',
@@ -181,7 +192,8 @@ var races = [
           '+Wiederstand',
           '+Leichte/Mittlere Rüstung',
           '+Handwerkskunst',
-        ],
+        ], // Str, Ges, Kon, Int, Wei, Cha
+        'boni': [0, 0, 1, 1, 0, 0],
       },
       {
         'name': 'Dunkel- Zwerg',
@@ -195,7 +207,8 @@ var races = [
         'racials': [
           '+Dunkelsicht',
           '+Unbeugsamkeit',
-        ],
+        ], // Str, Ges, Kon, Int, Wei, Cha
+        'boni': [0, 0, 3, 0, 0, 0],
       },
     ],
   },
@@ -292,8 +305,8 @@ var classes = [
     'dmgdice': 'w8',
     'primaryStat': 'Weisheit',
     'save': 'Weisheit & Charisma',
-    'armor': '',
-    'weapons': '',
+    'armor': 'Leichte, Mittlere, Schild',
+    'weapons': 'Einfache Einhandwaffen',
     'skills': [33, 34, 43, 37],
     'skillNum': 4,
   },
@@ -314,14 +327,14 @@ var classes = [
     'name': 'Mönch',
     'image': 'assets/classes/mönch.jpeg',
     'description':
-        'Ein Meister der Kampfkunst, der Körper und Geist gleichermaßen stählt.',
+        'Ein Meister der Kampfkunst, der Körper und Geist gleichermaßen stählt. ',
     'dmgdice': 'w8',
     'primaryStat': 'Geschicklichkeit & Weisheit',
     'save': 'Stärke & Geschicklichkeit',
-    'armor': 'Light',
+    'armor': 'Leichte',
     'weapons': 'Einfache Nahkampfwaffen, Faustwaffen',
     'skills': [27, 29, 40],
-    'skillNum': 3,
+    'skillNum': 4,
   },
   {
     'name': 'Paladin',
@@ -357,9 +370,52 @@ var classes = [
     'dmgdice': 'd6',
     'primaryStat': 'Charisma',
     'save': 'Charisma & Konstitution',
-    'armor': 'None',
+    'armor': 'Keine',
     'weapons': 'Dolch, Stäbe',
     'skills': [28, 30, 38],
     'skillNum': 3,
   },
 ];
+
+String getSkillName(int i) {
+  switch (i) {
+    case 27:
+      return 'Akrobatik (Ges)';
+    case 28:
+      return 'ArkaneKunde (Int)';
+    case 29:
+      return 'Athletik (Str)';
+    case 30:
+      return 'Auftreten (Cha)';
+    case 31:
+      return 'Einschüchtern (Cha)';
+    case 32:
+      return 'Fingerfertigkeit (Ges)';
+    case 33:
+      return 'Geschichte (Int)';
+    case 34:
+      return 'Heilkunde (Wei)';
+    case 35:
+      return 'Heimlichkeit (Ges)';
+    case 36:
+      return 'MitTierenUmgehen (Wei)';
+    case 37:
+      return 'MotivErkennen (Wei)';
+    case 38:
+      return 'Nachforschungen (Int)';
+    case 39:
+      return 'Naturkunde (Int)';
+    case 40:
+      return 'Religion (Int)';
+    case 41:
+      return 'Täuschen (Cha)';
+    case 42:
+      return 'Überlebenskunst (Wei)';
+    case 43:
+      return 'Überzeugen (Cha)';
+    case 44:
+      return 'Wahrnehmung (Wei)';
+    default:
+      return 'notfound';
+  }
+}
