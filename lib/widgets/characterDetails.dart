@@ -1,3 +1,4 @@
+import 'package:dndcharacter/charactersheet.dart';
 import 'package:flutter/material.dart';
 
 import '../responsive.dart';
@@ -14,6 +15,8 @@ class CharacterDetails extends StatelessWidget {
     required this.age,
     required this.racials,
     required this.increment,
+    required this.boni,
+    required this.gender,
   }) : super(key: key);
 
   final BuildContext ctx;
@@ -25,6 +28,8 @@ class CharacterDetails extends StatelessWidget {
   final String age;
   final List<String> racials;
   final Function increment;
+  final List<int> boni;
+  final String gender;
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +81,26 @@ class CharacterDetails extends StatelessWidget {
                           ? Colors.red
                           : Colors.green)),
             ),
+            Wrap(
+              children: List.generate(
+                6,
+                (i) {
+                  if (boni[i] > 0) {
+                    return Card(
+                      elevation: 8,
+                      color: Colors.grey,
+                      margin: const EdgeInsets.all(20),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text('${getBoniString(i)}: +${boni[i]}'),
+                      ),
+                    );
+                  } else {
+                    return const Text('');
+                  }
+                },
+              ),
+            ),
             const Divider(),
             Padding(
               padding: const EdgeInsets.only(top: 10),
@@ -102,6 +127,11 @@ class CharacterDetails extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                           primary: Colors.green.shade900),
                       onPressed: () {
+                        // TODO: Felder setzen
+                        CharacterSheet.gender = gender;
+                        CharacterSheet.boni = boni;
+                        CharacterSheet.race = name;
+                        CharacterSheet.racials = racials;
                         increment(true);
                         Navigator.pop(context);
                       },
@@ -153,5 +183,25 @@ class CharacterDetails extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String getBoniString(int i) {
+    // Str, Ges, Kon, Int, Wei, Cha
+    switch (i) {
+      case 0:
+        return 'Stärke';
+      case 1:
+        return 'Geschick';
+      case 2:
+        return 'Konstitution';
+      case 3:
+        return 'Intelligenz';
+      case 4:
+        return 'Weisheit';
+      case 5:
+        return 'Charisma';
+      default:
+        return 'error';
+    }
   }
 }

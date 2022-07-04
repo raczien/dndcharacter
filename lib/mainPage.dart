@@ -1,6 +1,9 @@
+import 'package:dndcharacter/charactersheet.dart';
 import 'package:dndcharacter/classPageContent.dart';
 import 'package:dndcharacter/racePageContent.dart';
 import 'package:flutter/material.dart';
+
+import 'attributes.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -29,12 +32,18 @@ class _MainPageState extends State<MainPage> {
     return [
       RacePageContent(incrementPageIndex: _incrementIndex),
       ClassPageContent(incrementPageIndex: _incrementIndex),
+      Attributes(incrementPageIndex: _incrementIndex),
     ];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print(CharacterSheet.toStr());
+        },
+      ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(

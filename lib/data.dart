@@ -214,6 +214,7 @@ var races = [
   },
 ];
 
+// TODO: Skills Liste und dazu Klassen Feld (Array)
 // Attribute modificator = (Wert - 10) / 2
 // Attributes = [15, 14, 13, 12, 10, 8]
 // Armor = 10 + Geschickmod
@@ -255,8 +256,8 @@ var classes = [
     'save': 'Intelligenz & Weisheit',
     'armor': 'Leichte und Mittlere',
     'weapons': 'Keulen, Dolche, Speere, Stäbe',
-    'skills': [42, 36, 39, 34],
-    'skillNum': 3,
+    'skills': [36, 39, 34],
+    'skillNum': 4,
   },
   {
     'name': 'Gladiator',
@@ -376,6 +377,70 @@ var classes = [
     'skillNum': 3,
   },
 ];
+
+List<int> allSkills = [
+  27,
+  28,
+  29,
+  30,
+  31,
+  32,
+  33,
+  34,
+  35,
+  36,
+  37,
+  38,
+  39,
+  40,
+  41,
+  42,
+  43,
+  44
+];
+
+int getSkillId(String name) {
+  switch (name) {
+    case 'Akrobatik (Ges)':
+      return 27;
+    case 'ArkaneKunde (Int)':
+      return 28;
+    case 'Athletik (Str)':
+      return 29;
+    case 'Auftreten (Cha)':
+      return 30;
+    case 'Einschüchtern (Cha)':
+      return 31;
+    case 'Fingerfertigkeit (Ges)':
+      return 32;
+    case 'Geschichte (Int)':
+      return 33;
+    case 'Heilkunde (Wei)':
+      return 34;
+    case 'Heimlichkeit (Ges)':
+      return 35;
+    case 'MitTierenUmgehen (Wei)':
+      return 36;
+    case 'MotivErkennen (Wei)':
+      return 37;
+    case 'Nachforschungen (Int)':
+      return 38;
+    case 'Naturkunde (Int)':
+      return 39;
+    case 'Religion (Int)':
+      return 40;
+    case 'Täuschen (Cha)':
+      return 41;
+    case 'Überlebenskunst (Wei)':
+      return 42;
+    case 'Überzeugen (Cha)':
+      return 43;
+    case 'Wahrnehmung (Wei)':
+      return 44;
+    default:
+      return 0;
+  }
+}
 
 String getSkillName(int i) {
   switch (i) {

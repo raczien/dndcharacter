@@ -133,7 +133,34 @@ class ClassPageContent extends StatelessWidget {
                         padding: const EdgeInsets.all(15.0),
                         child: Center(
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              int skillSetNum = ((classes[index]['skillNum'])
+                                      as int) -
+                                  (classes[index]['skills'] as List<dynamic>)
+                                      .length;
+                              if (skillSetNum > 0) {
+                                List<int> availableSkills = [];
+                                var classSkills =
+                                    classes[index]['skills'] as List<dynamic>;
+                                for (var skill in allSkills) {
+                                  if (!classSkills.contains(skill)) {
+                                    availableSkills.add(skill);
+                                  }
+                                }
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return SkillChooseDialog(
+                                        skillSetNum: skillSetNum,
+                                        availableSkills: availableSkills,
+                                      );
+                                    });
+                              } else {
+                                // TODO Felder setzen und weiter
+                                incrementPageIndex(true);
+                                print('Next Page');
+                              }
+                            },
                             style: ElevatedButton.styleFrom(
                                 primary: Colors.green.shade700),
                             child: const Text(
@@ -179,6 +206,147 @@ class ClassPageContent extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+class SkillChooseDialog extends StatefulWidget {
+  const SkillChooseDialog({
+    Key? key,
+    required this.skillSetNum,
+    required this.availableSkills,
+  }) : super(key: key);
+
+  final int skillSetNum;
+  final List<int> availableSkills;
+
+  @override
+  _SkillChooseDialogState createState() => _SkillChooseDialogState();
+}
+
+class _SkillChooseDialogState extends State<SkillChooseDialog> {
+  String selectedValue = 'Bitte auswählen';
+
+  List<int> savedSkills = [];
+
+  bool saveSkill(int skill) {
+    if (!savedSkills.contains(skill)) {
+      savedSkills.add(skill);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+      elevation: 16,
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Diese Klasse kann ${widget.skillSetNum} Fähigkeiten setzen.',
+              style: TextStyle(fontSize: 30),
+            ),
+            ...List.generate(
+              widget.skillSetNum,
+              (idx) => Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: SkillDropDown(
+                  availableSkills: widget.availableSkills,
+                  saveSkill: saveSkill,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  if (savedSkills.length == widget.skillSetNum) {
+                    print('next page');
+                  }
+                },
+                style: ElevatedButton.styleFrom(primary: Colors.green.shade700),
+                child: const Text(
+                  'Bestätigen',
+                  style: TextStyle(fontSize: 30),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SkillDropDown extends StatefulWidget {
+  final List<int> availableSkills;
+  final Function saveSkill;
+
+  const SkillDropDown({
+    super.key,
+    required this.availableSkills,
+    required this.saveSkill,
+  });
+
+  @override
+  _SkillDropDownState createState() => _SkillDropDownState();
+}
+
+class _SkillDropDownState extends State<SkillDropDown> {
+  String selectedValue = 'Bitte auswählen';
+  bool isLocked = false;
+  @override
+  Widget build(BuildContext context) {
+    double fontSize = Responsive.isDesktop(context) ? 26.0 : 20.0;
+    return IgnorePointer(
+      ignoring: isLocked,
+      child: DropdownButton(
+          value: selectedValue,
+          items: [
+            ...List.generate(
+              widget.availableSkills.length,
+              (i) => DropdownMenuItem(
+                value: getSkillName(widget.availableSkills[i]),
+                child: Text(
+                  getSkillName(widget.availableSkills[i]),
+                  style: TextStyle(fontSize: fontSize),
+                ),
+              ),
+            ),
+            DropdownMenuItem(
+              value: 'Bitte auswählen',
+              child: Text(
+                'Bitte auswählen',
+                style: TextStyle(fontSize: fontSize),
+              ),
+            ),
+          ],
+          onChanged: (String? newValue) {
+            setState(() {
+              if (newValue != 'Bitte auswählen') {
+                selectedValue = newValue!;
+              }
+              if (selectedValue != 'Bitte auswählen' &&
+                  newValue != 'Bitte auswählen') {
+                bool callback = widget.saveSkill(getSkillId(selectedValue));
+                if (!callback) {
+                  selectedValue = 'Bitte auswählen';
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(
+                      "Diese Fähigkeit ist bereits ausgewählt.",
+                      style: TextStyle(
+                          fontSize: Responsive.isDesktop(context) ? 30 : 18),
+                    ),
+                  ));
+                }
+              }
+            });
+          }),
     );
   }
 }

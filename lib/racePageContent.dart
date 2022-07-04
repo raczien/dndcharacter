@@ -93,6 +93,9 @@ class _RacePageContentState extends State<RacePageContent> {
                                                         as List<String>,
                                                     increment: widget
                                                         .incrementPageIndex,
+                                                    boni: subraces[index]
+                                                        ['boni'] as List<int>,
+                                                    gender: pickedGender,
                                                   );
                                                 });
                                           },
@@ -146,8 +149,6 @@ class _RacePageContentState extends State<RacePageContent> {
                               )
                             : ListTile(
                                 onTap: () {
-                                  print(races[index]['race']);
-                                  print(subraces[0]['racials']);
                                   showDialog(
                                       context: context,
                                       builder: (context) {
@@ -164,6 +165,9 @@ class _RacePageContentState extends State<RacePageContent> {
                                           racials: subraces[0]['racials']
                                               as List<String>,
                                           increment: widget.incrementPageIndex,
+                                          boni:
+                                              subraces[0]['boni'] as List<int>,
+                                          gender: pickedGender,
                                         );
                                       });
                                 },
