@@ -1,3 +1,4 @@
+import 'package:dndcharacter/charactersheet.dart';
 import 'package:dndcharacter/data.dart';
 import 'package:dndcharacter/responsive.dart';
 import 'package:flutter/material.dart';
@@ -153,12 +154,24 @@ class ClassPageContent extends StatelessWidget {
                                       return SkillChooseDialog(
                                         skillSetNum: skillSetNum,
                                         availableSkills: availableSkills,
+                                        incrementPageIndex: incrementPageIndex,
+                                        classIndex: index,
                                       );
                                     });
                               } else {
-                                // TODO Felder setzen und weiter
+                                CharacterSheet.damageDice =
+                                    classes[index]['dmgdice'] as String;
+                                CharacterSheet.primaryStats =
+                                    classes[index]['primaryStat'] as String;
+                                CharacterSheet.saveStats =
+                                    classes[index]['save'] as String;
+                                CharacterSheet.armor =
+                                    classes[index]['armor'] as String;
+                                CharacterSheet.weapons =
+                                    classes[index]['weapons'] as String;
+                                CharacterSheet.perks =
+                                    classes[index]['skills'] as List<int>;
                                 incrementPageIndex(true);
-                                print('Next Page');
                               }
                             },
                             style: ElevatedButton.styleFrom(
@@ -215,10 +228,14 @@ class SkillChooseDialog extends StatefulWidget {
     Key? key,
     required this.skillSetNum,
     required this.availableSkills,
+    required this.incrementPageIndex,
+    required this.classIndex,
   }) : super(key: key);
 
   final int skillSetNum;
   final List<int> availableSkills;
+  final Function incrementPageIndex;
+  final int classIndex;
 
   @override
   _SkillChooseDialogState createState() => _SkillChooseDialogState();
@@ -226,11 +243,13 @@ class SkillChooseDialog extends StatefulWidget {
 
 class _SkillChooseDialogState extends State<SkillChooseDialog> {
   String selectedValue = 'Bitte auswählen';
-
   List<int> savedSkills = [];
 
-  bool saveSkill(int skill) {
+  bool saveSkill(int skill, int old) {
     if (!savedSkills.contains(skill)) {
+      if (savedSkills.contains(old)) {
+        savedSkills.remove(old);
+      }
       savedSkills.add(skill);
       return true;
     } else {
@@ -266,7 +285,27 @@ class _SkillChooseDialogState extends State<SkillChooseDialog> {
               child: ElevatedButton(
                 onPressed: () {
                   if (savedSkills.length == widget.skillSetNum) {
-                    print('next page');
+                    List<int> allSkills = [];
+                    var x =
+                        classes[widget.classIndex]['skills'] as List<dynamic>;
+                    allSkills = allSkills + savedSkills;
+                    if (x.isNotEmpty) {
+                      allSkills = allSkills +
+                          (classes[widget.classIndex]['skills'] as List<int>);
+                    }
+                    CharacterSheet.damageDice =
+                        classes[widget.classIndex]['dmgdice'] as String;
+                    CharacterSheet.primaryStats =
+                        classes[widget.classIndex]['primaryStat'] as String;
+                    CharacterSheet.saveStats =
+                        classes[widget.classIndex]['save'] as String;
+                    CharacterSheet.armor =
+                        classes[widget.classIndex]['armor'] as String;
+                    CharacterSheet.weapons =
+                        classes[widget.classIndex]['weapons'] as String;
+                    CharacterSheet.perks = allSkills;
+                    widget.incrementPageIndex(true);
+                    Navigator.pop(context);
                   }
                 },
                 style: ElevatedButton.styleFrom(primary: Colors.green.shade700),
@@ -327,13 +366,15 @@ class _SkillDropDownState extends State<SkillDropDown> {
             ),
           ],
           onChanged: (String? newValue) {
+            String oldSelected = selectedValue;
             setState(() {
               if (newValue != 'Bitte auswählen') {
                 selectedValue = newValue!;
               }
               if (selectedValue != 'Bitte auswählen' &&
                   newValue != 'Bitte auswählen') {
-                bool callback = widget.saveSkill(getSkillId(selectedValue));
+                bool callback = widget.saveSkill(
+                    getSkillId(selectedValue), getSkillId(oldSelected));
                 if (!callback) {
                   selectedValue = 'Bitte auswählen';
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(

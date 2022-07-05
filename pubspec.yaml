@@ -15,6 +15,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   auto_size_text: ^3.0.0
+  syncfusion_flutter_pdf: ^20.2.36
+  universal_html: ^2.0.8
 
 dev_dependencies:
   flutter_test:

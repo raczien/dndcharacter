@@ -9,13 +9,23 @@ class CharacterSheet {
   static String armor = ''; // .contains Leichte / Mittlere / Schwere / Schild
   static String weapons = '';
   static List<int> perks = [];
+  static List<int> boniValues = [];
+  static List<int> attributes = [];
 
   static String toStr() {
     return 'CharacterSheet{'
         'race: $race, '
         'gender: $gender, '
         'racials: ${racials.join()}, '
-        'boni: ${boni.join()}'
+        'boni: ${boni.join()}, '
+        'dice: $damageDice, '
+        'primary: $primaryStats, '
+        'saves: $saveStats, '
+        'armor: $armor, '
+        'weapon: $weapons, '
+        'boni: ${perks.join(',')}, '
+        'boniValues: ${boniValues.join(',')}, '
+        'attributes: ${attributes.join(',')}, '
         '}';
   }
 }

@@ -4,6 +4,7 @@ import 'package:dndcharacter/racePageContent.dart';
 import 'package:flutter/material.dart';
 
 import 'attributes.dart';
+import 'characterInfo.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -33,6 +34,7 @@ class _MainPageState extends State<MainPage> {
       RacePageContent(incrementPageIndex: _incrementIndex),
       ClassPageContent(incrementPageIndex: _incrementIndex),
       Attributes(incrementPageIndex: _incrementIndex),
+      CharacterInfo()
     ];
   }
 
@@ -110,6 +112,25 @@ class _MainPageState extends State<MainPage> {
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: (index == 2)
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: index == 3 ? activeColor : inactiveColor,
+                      elevation: 8,
+                      shadowColor: Colors.white,
+                      shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text(
+                          'Infos',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: (index == 3)
                                 ? FontWeight.bold
                                 : FontWeight.normal,
                           ),
