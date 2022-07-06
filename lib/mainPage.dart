@@ -1,5 +1,7 @@
+import 'package:dndcharacter/charactersheet.dart';
 import 'package:dndcharacter/classPageContent.dart';
 import 'package:dndcharacter/racePageContent.dart';
+import 'package:dndcharacter/responsive.dart';
 import 'package:flutter/material.dart';
 
 import 'attributes.dart';
@@ -14,7 +16,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int index = 0;
-  Color activeColor = Colors.teal.shade900;
+  Color activeColor = Colors.teal.shade700;
   Color? inactiveColor = Colors.grey[800];
 
   void _incrementIndex(bool b) {
@@ -49,84 +51,126 @@ class _MainPageState extends State<MainPage> {
         ),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: SizedBox(
+            Container(
+              decoration: BoxDecoration(color: Colors.teal.shade900),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Card(
-                      color: index == 0 ? activeColor : inactiveColor,
-                      elevation: 8,
-                      shadowColor: Colors.white,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Text(
-                          'Rasse',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: (index == 0)
-                                ? FontWeight.bold
-                                : FontWeight.normal,
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          index = 0;
+                        });
+                      },
+                      child: Card(
+                        color: index == 0 ? activeColor : inactiveColor,
+                        elevation: index == 0 ? 6 : 0,
+                        shadowColor: Colors.white,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text(
+                            'Rasse',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: (index == 0)
+                                  ? FontWeight.bold
+                                  : FontWeight.normal,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                    Card(
-                      color: index == 1 ? activeColor : inactiveColor,
-                      elevation: 8,
-                      shadowColor: Colors.white,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Text(
-                          'Klasse',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: (index == 1)
-                                ? FontWeight.bold
-                                : FontWeight.normal,
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          index = 1;
+                        });
+                      },
+                      child: Card(
+                        color: index == 1 ? activeColor : inactiveColor,
+                        elevation: index == 1 ? 6 : 0,
+                        shadowColor: Colors.white,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text(
+                            'Klasse',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: (index == 1)
+                                  ? FontWeight.bold
+                                  : FontWeight.normal,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                    Card(
-                      color: index == 2 ? activeColor : inactiveColor,
-                      elevation: 8,
-                      shadowColor: Colors.white,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Text(
-                          'Attribute',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: (index == 2)
-                                ? FontWeight.bold
-                                : FontWeight.normal,
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          index = 2;
+                        });
+                      },
+                      child: Card(
+                        color: index == 2 ? activeColor : inactiveColor,
+                        elevation: index == 2 ? 6 : 0,
+                        shadowColor: Colors.white,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text(
+                            'Attribute',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: (index == 2)
+                                  ? FontWeight.bold
+                                  : FontWeight.normal,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                    Card(
-                      color: index == 3 ? activeColor : inactiveColor,
-                      elevation: 8,
-                      shadowColor: Colors.white,
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Text(
-                          'Infos',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: (index == 3)
-                                ? FontWeight.bold
-                                : FontWeight.normal,
+                    InkWell(
+                      onTap: () {
+                        if (CharacterSheet.classSet &&
+                            CharacterSheet.raceSet &&
+                            CharacterSheet.attributesSet) {
+                          setState(() {
+                            index = 3;
+                          });
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(
+                              "Bitte Rasse, Klasse und Attribute setzen.",
+                              style: TextStyle(
+                                  fontSize:
+                                      Responsive.isDesktop(context) ? 30 : 18),
+                            ),
+                          ));
+                        }
+                      },
+                      child: Card(
+                        color: index == 3 ? activeColor : inactiveColor,
+                        elevation: index == 3 ? 6 : 0,
+                        shadowColor: Colors.white,
+                        shape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text(
+                            'Infos',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: (index == 3)
+                                  ? FontWeight.bold
+                                  : FontWeight.normal,
+                            ),
                           ),
                         ),
                       ),
@@ -136,7 +180,13 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
             Expanded(
-              child: _widgetOptions()[index], //RacePageContent(),
+              child: IndexedStack(
+                alignment: AlignmentDirectional.topCenter,
+                index: index,
+                children: [
+                  ..._widgetOptions(),
+                ],
+              ),
             ),
           ],
         ),

@@ -132,6 +132,7 @@ class CharacterDetails extends StatelessWidget {
                         CharacterSheet.boni = boni;
                         CharacterSheet.race = name;
                         CharacterSheet.racials = racials;
+                        CharacterSheet.raceSet = true;
                         increment(true);
                         Navigator.pop(context);
                       },

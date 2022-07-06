@@ -14,6 +14,10 @@ class CharacterSheet {
   static List<int> boniValues = [];
   static List<int> attributes = [];
 
+  static bool raceSet = false;
+  static bool classSet = false;
+  static bool attributesSet = false;
+
   static String toStr() {
     return 'CharacterSheet{'
         'race: $race, '

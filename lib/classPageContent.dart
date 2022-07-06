@@ -12,8 +12,43 @@ class ClassPageContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        if (CharacterSheet.classSet)
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Colors.black),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Text(
+                      'Gewählte Klasse:',
+                      style: TextStyle(
+                        color: Colors.teal.shade900,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 28,
+                      ),
+                    ),
+                    Text(
+                      '${CharacterSheet.classe}',
+                      style: TextStyle(
+                        color: Colors.teal.shade900,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 28,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         Expanded(
           child: SingleChildScrollView(
+            controller: ScrollController(),
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
@@ -176,6 +211,7 @@ class ClassPageContent extends StatelessWidget {
                                     classes[index]['weapons'] as String;
                                 CharacterSheet.perks =
                                     classes[index]['skills'] as List<int>;
+                                CharacterSheet.classSet = true;
                                 incrementPageIndex(true);
                               }
                             },
@@ -313,6 +349,7 @@ class _SkillChooseDialogState extends State<SkillChooseDialog> {
                     CharacterSheet.weapons =
                         classes[widget.classIndex]['weapons'] as String;
                     CharacterSheet.perks = allSkills;
+                    CharacterSheet.classSet = true;
                     widget.incrementPageIndex(true);
                     Navigator.pop(context);
                   }

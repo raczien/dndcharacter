@@ -1,3 +1,4 @@
+import 'package:dndcharacter/charactersheet.dart';
 import 'package:dndcharacter/responsive.dart';
 import 'package:dndcharacter/widgets/characterDetails.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ class RacePageContent extends StatefulWidget {
       : super(key: key);
 
   final Function incrementPageIndex;
+
   @override
   State<RacePageContent> createState() => _RacePageContentState();
 }
@@ -28,17 +30,105 @@ class _RacePageContentState extends State<RacePageContent> {
     });
   }
 
+  String getBoniString() {
+    String str = '';
+    int i = 0;
+    for (int idx in CharacterSheet.boni) {
+      if (idx != 0) {
+        switch (i) {
+          case 0:
+            str = '$str STR +$idx';
+            break;
+          case 1:
+            str = '$str GES +$idx';
+            break;
+          case 2:
+            str = '$str CON +$idx';
+            break;
+          case 3:
+            str = '$str INT +$idx';
+            break;
+          case 4:
+            str = '$str WIS +$idx';
+            break;
+          case 5:
+            str = '$str CHA +$idx';
+            break;
+          default:
+            break;
+        }
+        str = '$str ,';
+      }
+      i++;
+    }
+    return str.substring(0, str.length - 2);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        if (CharacterSheet.raceSet)
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Colors.black),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              width: MediaQuery.of(context).size.width / 4,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        'Gewählte Rasse',
+                        style: TextStyle(
+                          color: Colors.teal.shade900,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 28,
+                        ),
+                      ),
+                    ),
+                    Divider(),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        CharacterSheet.race,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 26,
+                        ),
+                      ),
+                    ),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        'Stat- Boni: ${getBoniString()}',
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: buildGenderChanger(),
         ),
         Expanded(
           child: SingleChildScrollView(
+            controller: ScrollController(),
             child: Center(
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 10),
