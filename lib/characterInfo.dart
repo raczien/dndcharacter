@@ -354,6 +354,15 @@ class _CharacterInfoState extends State<CharacterInfo> {
               hitDice.text = CharacterSheet.damageDice;
               hitDice.font = font16;
 
+              PdfTextBoxField armor =
+                  document.form.fields[21] as PdfTextBoxField;
+              armor.text = CharacterSheet.armor;
+              armor.font = PdfStandardFont(PdfFontFamily.helvetica, 12);
+
+              PdfTextBoxField wpn = document.form.fields[32] as PdfTextBoxField;
+              wpn.text = CharacterSheet.weapons;
+              wpn.font = PdfStandardFont(PdfFontFamily.helvetica, 12);
+
               PdfTextBoxField racials =
                   document.form.fields[52] as PdfTextBoxField;
               racials.text = CharacterSheet.racials.join('\n');
