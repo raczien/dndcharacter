@@ -20,7 +20,6 @@ class _MainPageState extends State<MainPage> {
   Color? inactiveColor = Colors.grey[800];
 
   void _incrementIndex(bool b) {
-    // maybe go back in input string
     setState(() {
       if (b) {
         index++;
@@ -112,9 +111,21 @@ class _MainPageState extends State<MainPage> {
                     ),
                     InkWell(
                       onTap: () {
-                        setState(() {
+                        if(CharacterSheet.raceSet) {
+                          setState(() {
                           index = 2;
                         });
+                        }
+                        else{
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(
+                              "Bitte Rasse setzen.",
+                              style: TextStyle(
+                                  fontSize:
+                                  Responsive.isDesktop(context) ? 30 : 18),
+                            ),
+                          ));
+                        }
                       },
                       child: Card(
                         color: index == 2 ? activeColor : inactiveColor,

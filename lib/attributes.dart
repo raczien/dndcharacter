@@ -107,7 +107,7 @@ class _AttributesState extends State<Attributes> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      padding: const EdgeInsets.only(top: 20),
       child: SingleChildScrollView(
         controller: ScrollController(),
         child: Column(

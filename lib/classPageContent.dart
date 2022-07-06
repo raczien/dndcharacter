@@ -212,7 +212,11 @@ class ClassPageContent extends StatelessWidget {
                                 CharacterSheet.perks =
                                     classes[index]['skills'] as List<int>;
                                 CharacterSheet.classSet = true;
-                                incrementPageIndex(true);
+                                if(CharacterSheet.raceSet) {
+                                  incrementPageIndex(true);
+                                }else{
+                                  incrementPageIndex(false);
+                                }
                               }
                             },
                             style: ElevatedButton.styleFrom(
@@ -350,7 +354,11 @@ class _SkillChooseDialogState extends State<SkillChooseDialog> {
                         classes[widget.classIndex]['weapons'] as String;
                     CharacterSheet.perks = allSkills;
                     CharacterSheet.classSet = true;
-                    widget.incrementPageIndex(true);
+                    if(CharacterSheet.raceSet) {
+                      widget.incrementPageIndex(true);
+                    }else{
+                      widget.incrementPageIndex(false);
+                    }
                     Navigator.pop(context);
                   }
                 },

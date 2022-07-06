@@ -134,6 +134,9 @@ class CharacterDetails extends StatelessWidget {
                         CharacterSheet.racials = racials;
                         CharacterSheet.raceSet = true;
                         increment(true);
+                        if(CharacterSheet.classSet) {
+                          increment(true);
+                        }
                         Navigator.pop(context);
                       },
                       child: const Text(
