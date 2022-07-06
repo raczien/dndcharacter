@@ -172,6 +172,10 @@ class _AttributesState extends State<Attributes> {
                 var x = getAttributeFromIndexes(index) == 0
                     ? 0
                     : (getAttributeFromIndexes(index) - 10) ~/ 2;
+
+                if (x == 0 && getAttributeFromIndexes(index) == 9) {
+                  x = -1;
+                }
                 return Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -658,19 +662,20 @@ class _AttributesState extends State<Attributes> {
                   var x = getAttributeFromIndexes(i) == 0
                       ? 0
                       : (getAttributeFromIndexes(i) - 10) ~/ 2;
+                  if (x == 0 && getAttributeFromIndexes(i) == 9) {
+                    x = -1;
+                  }
                   boni.add(x);
                 }
                 List<int> finalBoni = [];
                 finalBoni.addAll([
-                  int.parse(str),
-                  int.parse(ges),
-                  int.parse(con),
-                  int.parse(inl),
-                  int.parse(wis),
-                  int.parse(cha),
+                  int.parse(str) + CharacterSheet.boni[0],
+                  int.parse(ges) + CharacterSheet.boni[1],
+                  int.parse(con) + CharacterSheet.boni[2],
+                  int.parse(inl) + CharacterSheet.boni[3],
+                  int.parse(wis) + CharacterSheet.boni[4],
+                  int.parse(cha) + CharacterSheet.boni[5],
                 ]);
-                print(boni);
-                print(finalBoni);
                 CharacterSheet.boniValues = boni;
                 CharacterSheet.attributes = finalBoni;
                 widget.incrementPageIndex(true);

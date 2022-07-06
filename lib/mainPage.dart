@@ -34,7 +34,7 @@ class _MainPageState extends State<MainPage> {
       RacePageContent(incrementPageIndex: _incrementIndex),
       ClassPageContent(incrementPageIndex: _incrementIndex),
       Attributes(incrementPageIndex: _incrementIndex),
-      CharacterInfo()
+      const CharacterInfo(),
     ];
   }
 

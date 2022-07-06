@@ -228,9 +228,10 @@ var classes = [
     'dmgdice': 'w12',
     'primaryStat': 'Stärke',
     'save': 'Stärke & Konstitution',
+    'saveIds': [0, 2],
     'armor': 'Leichte, Mittlere, Schilde',
     'weapons': 'Zweihandaxt oder zwei Einhandäxte',
-    'skills': [31, 42, 44],
+    'skills': [71, 66, 100],
     'skillNum': 3,
   },
   {
@@ -241,6 +242,7 @@ var classes = [
     'dmgdice': 'w8',
     'primaryStat': 'Charisma',
     'save': 'Charisma & Geschicklichkeit',
+    'saveIds': [1, 5],
     'armor': 'Leichte',
     'weapons': 'Einhandwaffen',
     'skills': [], // any 3
@@ -254,9 +256,10 @@ var classes = [
     'dmgdice': 'w8',
     'primaryStat': 'Weisheit',
     'save': 'Intelligenz & Weisheit',
+    'saveIds': [3, 4],
     'armor': 'Leichte und Mittlere',
     'weapons': 'Keulen, Dolche, Speere, Stäbe',
-    'skills': [36, 39, 34],
+    'skills': [67, 64, 68],
     'skillNum': 4,
   },
   {
@@ -267,9 +270,10 @@ var classes = [
     'dmgdice': 'w10',
     'primaryStat': 'Stärke',
     'save': 'Stärke & Konstitution',
+    'saveIds': [0, 2],
     'armor': 'Alle, Schilde (optional)',
     'weapons': 'Alle normale Nahkampfwaffen',
-    'skills': [42, 27, 31],
+    'skills': [66, 59, 71],
     'skillNum': 3,
   },
   {
@@ -280,9 +284,10 @@ var classes = [
     'dmgdice': 'd8',
     'primaryStat': 'Charisma',
     'save': 'Weisheit & Charisma',
+    'saveIds': [4, 5],
     'armor': 'Leichte',
     'weapons': 'Magische Waffen, wie Stäbe, Keulen, Bücher',
-    'skills': [28, 38, 43],
+    'skills': [61, 63, 74],
     'skillNum': 3,
   },
   {
@@ -293,9 +298,10 @@ var classes = [
     'dmgdice': 'w10',
     'primaryStat': 'Geschicklichkeit & Weisheit',
     'save': 'Stärke & Geschicklichkeit',
+    'saveIds': [0, 1],
     'armor': 'Leichte, Mittlere',
     'weapons': 'Bögen oder Armbrüste und Einhandwaffe',
-    'skills': [36, 27, 38, 44],
+    'skills': [67, 59, 63, 100],
     'skillNum': 4,
   },
   {
@@ -306,9 +312,10 @@ var classes = [
     'dmgdice': 'w8',
     'primaryStat': 'Weisheit',
     'save': 'Weisheit & Charisma',
+    'saveIds': [4, 5],
     'armor': 'Leichte, Mittlere, Schild',
     'weapons': 'Einfache Einhandwaffen',
-    'skills': [33, 34, 43, 37],
+    'skills': [62, 68, 74, 99],
     'skillNum': 4,
   },
   {
@@ -319,9 +326,10 @@ var classes = [
     'dmgdice': 'd6',
     'primaryStat': 'Intelligenz',
     'save': 'Intelligenz & Weisheit',
+    'saveIds': [3, 4],
     'armor': 'Keine',
     'weapons': 'Dolche, Stäbe',
-    'skills': [28, 38, 44, 33],
+    'skills': [61, 63, 100, 62],
     'skillNum': 4,
   },
   {
@@ -331,10 +339,11 @@ var classes = [
         'Ein Meister der Kampfkunst, der Körper und Geist gleichermaßen stählt. ',
     'dmgdice': 'w8',
     'primaryStat': 'Geschicklichkeit & Weisheit',
+    'saveIds': [1, 4],
     'save': 'Stärke & Geschicklichkeit',
     'armor': 'Leichte',
     'weapons': 'Einfache Nahkampfwaffen, Faustwaffen',
-    'skills': [27, 29, 40],
+    'skills': [59, 53, 65],
     'skillNum': 4,
   },
   {
@@ -345,9 +354,10 @@ var classes = [
     'dmgdice': 'w10',
     'primaryStat': 'Stärke & Charisma',
     'save': 'Weisheit & Charisma',
+    'saveIds': [4, 5],
     'armor': 'Schwere, Schilde',
     'weapons': 'Einhandwaffen',
-    'skills': [43, 30, 40],
+    'skills': [74, 73, 65],
     'skillNum': 3,
   },
   {
@@ -358,9 +368,10 @@ var classes = [
     'dmgdice': 'd8',
     'primaryStat': 'Geschicklichkeit',
     'save': 'Geschicklichkeit & Intelligenz',
+    'saveIds': [1, 3],
     'armor': 'Leichte',
     'weapons': 'Zwei Einhandwaffen',
-    'skills': [41, 35, 44, 32],
+    'skills': [72, 56, 100, 55],
     'skillNum': 4,
   },
   {
@@ -371,72 +382,73 @@ var classes = [
     'dmgdice': 'd6',
     'primaryStat': 'Charisma',
     'save': 'Charisma & Konstitution',
+    'saveIds': [2, 5],
     'armor': 'Keine',
     'weapons': 'Dolch, Stäbe',
-    'skills': [28, 30, 38],
+    'skills': [61, 73, 63],
     'skillNum': 3,
   },
 ];
 
 List<int> allSkills = [
-  27,
-  28,
-  29,
-  30,
-  31,
-  32,
-  33,
-  34,
-  35,
-  36,
-  37,
-  38,
-  39,
-  40,
-  41,
-  42,
-  43,
-  44
+  59,
+  61,
+  53,
+  73,
+  71,
+  55,
+  62,
+  68,
+  56,
+  67,
+  99,
+  63,
+  64,
+  65,
+  72,
+  66,
+  74,
+  100
 ];
 
 int getSkillId(String name) {
   switch (name) {
     case 'Akrobatik (Ges)':
-      return 27;
+      return 59;
     case 'ArkaneKunde (Int)':
-      return 28;
+      return 61;
     case 'Athletik (Str)':
-      return 29;
+      return 53;
     case 'Auftreten (Cha)':
-      return 30;
+      return 73;
     case 'Einschüchtern (Cha)':
-      return 31;
+      return 71;
     case 'Fingerfertigkeit (Ges)':
-      return 32;
+      return 55;
     case 'Geschichte (Int)':
-      return 33;
+      return 62;
     case 'Heilkunde (Wei)':
-      return 34;
+      return 68;
     case 'Heimlichkeit (Ges)':
-      return 35;
+      return 56;
     case 'MitTierenUmgehen (Wei)':
-      return 36;
+      return 67;
     case 'MotivErkennen (Wei)':
-      return 37;
+      return 99;
     case 'Nachforschungen (Int)':
-      return 38;
+      return 63;
     case 'Naturkunde (Int)':
-      return 39;
+      return 64;
     case 'Religion (Int)':
-      return 40;
+      return 65;
     case 'Täuschen (Cha)':
-      return 41;
+      return 72;
     case 'Überlebenskunst (Wei)':
-      return 42;
+      return 66;
     case 'Überzeugen (Cha)':
-      return 43;
+      return 74;
     case 'Wahrnehmung (Wei)':
-      return 44;
+      return 100;
     default:
       return 0;
   }
@@ -444,41 +456,41 @@ int getSkillId(String name) {
 
 String getSkillName(int i) {
   switch (i) {
-    case 27:
+    case 59:
       return 'Akrobatik (Ges)';
-    case 28:
+    case 61:
       return 'ArkaneKunde (Int)';
-    case 29:
+    case 53:
       return 'Athletik (Str)';
-    case 30:
+    case 73:
       return 'Auftreten (Cha)';
-    case 31:
+    case 71:
       return 'Einschüchtern (Cha)';
-    case 32:
+    case 55:
       return 'Fingerfertigkeit (Ges)';
-    case 33:
+    case 62:
       return 'Geschichte (Int)';
-    case 34:
+    case 68:
       return 'Heilkunde (Wei)';
-    case 35:
+    case 56:
       return 'Heimlichkeit (Ges)';
-    case 36:
+    case 67:
       return 'MitTierenUmgehen (Wei)';
-    case 37:
+    case 99:
       return 'MotivErkennen (Wei)';
-    case 38:
+    case 63:
       return 'Nachforschungen (Int)';
-    case 39:
+    case 64:
       return 'Naturkunde (Int)';
-    case 40:
+    case 65:
       return 'Religion (Int)';
-    case 41:
+    case 72:
       return 'Täuschen (Cha)';
-    case 42:
+    case 66:
       return 'Überlebenskunst (Wei)';
-    case 43:
+    case 74:
       return 'Überzeugen (Cha)';
-    case 44:
+    case 100:
       return 'Wahrnehmung (Wei)';
     default:
       return 'notfound';

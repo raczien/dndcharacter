@@ -28,9 +28,10 @@ class ClassPageContent extends StatelessWidget {
                   classes.length,
                   (index) => ExpansionTile(
                     expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                    trailing: const Icon(
+                    trailing: Icon(
                       Icons.arrow_downward_outlined,
                       size: 40,
+                      color: Colors.teal.shade800,
                     ),
                     title: Row(
                       children: [
@@ -159,6 +160,10 @@ class ClassPageContent extends StatelessWidget {
                                       );
                                     });
                               } else {
+                                CharacterSheet.classe =
+                                    classes[index]['name'] as String;
+                                CharacterSheet.saveIds.addAll(
+                                    classes[index]['saveIds'] as List<int>);
                                 CharacterSheet.damageDice =
                                     classes[index]['dmgdice'] as String;
                                 CharacterSheet.primaryStats =
@@ -293,6 +298,10 @@ class _SkillChooseDialogState extends State<SkillChooseDialog> {
                       allSkills = allSkills +
                           (classes[widget.classIndex]['skills'] as List<int>);
                     }
+                    CharacterSheet.classe =
+                        classes[widget.classIndex]['name'] as String;
+                    CharacterSheet.saveIds.addAll(
+                        classes[widget.classIndex]['saveIds'] as List<int>);
                     CharacterSheet.damageDice =
                         classes[widget.classIndex]['dmgdice'] as String;
                     CharacterSheet.primaryStats =

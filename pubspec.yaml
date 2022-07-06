@@ -70,9 +70,7 @@ flutter:
     - assets/classes/paladin.jpeg
     - assets/classes/schurke.jpeg
     - assets/classes/zauberer.jpeg
-    - assets/bg.jpg
     - assets/bg2.jpg
-    - assets/bg3.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
