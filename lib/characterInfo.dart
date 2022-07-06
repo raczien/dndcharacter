@@ -146,7 +146,7 @@ class _CharacterInfoState extends State<CharacterInfo> {
               var font16 = PdfStandardFont(PdfFontFamily.helvetica, 16);
               var xfont = PdfStandardFont(PdfFontFamily.helvetica, 15);
 
-              var myPdf = await rootBundle.load('charactersheet.pdf');
+              var myPdf = await rootBundle.load('assets/charactersheet.pdf');
               final PdfDocument document =
                   PdfDocument(inputBytes: myPdf.buffer.asUint8List());
 
