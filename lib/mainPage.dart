@@ -41,11 +41,6 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print(CharacterSheet.toStr());
-        },
-      ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
