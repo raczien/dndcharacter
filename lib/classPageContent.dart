@@ -50,7 +50,7 @@ class ClassPageContent extends StatelessWidget {
           child: SingleChildScrollView(
             controller: ScrollController(),
             child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 10),
+              margin: const EdgeInsets.symmetric(vertical: 10),
               decoration: BoxDecoration(
                 color: Colors.white.withOpacity(0.3),
                 borderRadius: BorderRadius.circular(20.0),
