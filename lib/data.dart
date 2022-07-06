@@ -10,7 +10,7 @@ var races = [
         'weight': 'bis zu 85 KG',
         'maxAge': '~70 Jahre',
         'description':
-            'Die Argonier sind echsenartige, jedoch humanoide Wesen. Sie können unter Wasser atmen und sind immun gegen Krankheiten und viele Gifte.\nSie sind flink im Wasser und unebenen Gebieten und Experten in Sachen Natur und Kräuter. Sie sind schlau und flink, werden alelrdings von manch anderen Rassen wegen ihres aussehens verachtet.',
+            'Die Argonier sind echsenartige, jedoch humanoide Wesen. \nSie können unter Wasser atmen und sind immun gegen Krankheiten und viele Gifte.\nIm Wasser und unebenen Gebieten sind sie recht flink und sie sind Experten in Sachen Natur und Kräuter. \nSie werden allerdings von manch anderen Rassen wegen ihres Aussehens verachtet.',
         'racials': [
           '+Wasseratmung',
           '+Krankheitsimmunität',
@@ -30,7 +30,8 @@ var races = [
         'size': '1,70 - 1,90 Meter',
         'weight': 'bis zu 42 KG',
         'maxAge': '~550 Jahre',
-        'description': 'Rasse der Elfen',
+        'description':
+            'Die Dunkel- Elfen lieben die Magie. Sie sind eine alte Rasse, die einen Großteil ihres langen Lebens der Studien widmen.\nJedoch gibt es unter ihnen auch einige Abenteurer die sich ganz auf Überlebens- und Kampfkunst fokussieren.\nManch andere Völker kommen wegen der oft vorkommenden Arroganz bei Elfen nicht mit ihnen klar.',
         'racials': [
           '+Dunkelsicht',
           '+Geschärfte Sinne',
@@ -47,7 +48,8 @@ var races = [
         'size': '1,75 - 1,90 Meter',
         'weight': 'bis zu 45 KG',
         'maxAge': '~500 Jahre',
-        'description': 'Rasse der Dunkel- Elfen',
+        'description':
+            'Die Dunkel- Elfen sind oftmals eher Alleingänger.\nSie sind Wanderer, Pilger und halten sich meist in Wäldern oder Bergen auf.\nSie hassen alle Arten von Monstern und Jagen diese häufig auch gegen Bezahlung.',
         'racials': [
           '+Dunkelsicht',
           '+Geschärfte Sinne',
@@ -69,7 +71,7 @@ var races = [
         'weight': 'bis zu 50 KG',
         'maxAge': '~200',
         'description':
-            'Als kleinste Rasse sind sie auch flink und werden zunächst als ungefährlich und freundlich eingestuft.',
+            'Als kleinste Rasse sind sie auch flink und werden zunächst als ungefährlich und freundlich eingestuft.\nGnome sind im Allgemeinen auch allen Klassen gegenüber freundlich gesonnen.',
         'racials': [
           '+Glück',
           '+Verstohlen',
@@ -90,7 +92,7 @@ var races = [
         'weight': 'bis zu 110 KG',
         'maxAge': '~80 Jahre',
         'description':
-            'Die Menschen sind die anpassungsstärkste und ambitionierteste Rasse. Die haben eine kleinere Lebensspanne und sind keine magischen Wesen, was sie aber durch ihre Willensstärke und Durchsetzungsfähigkeit keineswegs schwächer machen.\nMenschen sind meist Teamplayer, Abenteurer und ziehen alles durch, was sie angefangen haben.',
+            'Die Menschen sind die anpassungsstärkste und ambitionierteste Rasse.\nDie haben eine kurze Lebensspanne und sind keine magischen Wesen, was sie aber durch ihre Willensstärke und Durchsetzungsfähigkeit keineswegs schwächer machen.\nMenschen sind meist Teamplayer, Abenteurer und ziehen alles durch, was sie angefangen haben.',
         'racials': [
           '+Sprachen',
           '+Ausdauernd',
@@ -105,13 +107,14 @@ var races = [
         'size': '1,60 - 1,90 Meter',
         'weight': 'bis zu 110 KG',
         'maxAge': '~80 Jahre',
-        'description': '',
+        'description':
+            'Die Gesetzlosen brauchen keine Könige, Grafen oder andere Herrscher.\nSie sind nur sich selber treu und lassen sich von keiner höheren Autorität ihre hart verdienten (oder geklauten) Münzen durch Steuern wegnehmen.\nViele von ihnen sind oder waren schon einmal als Meuchelmörder oder Diebe tätig.',
         'racials': [
           '+Sprachen',
           '+Gechick',
           '+1 Feat',
         ], // Str, Ges, Kon, Int, Wei, Cha
-        'boni': [0, 2, 0, 0, 0, 0],
+        'boni': [0, 2, 0, 0, 1, 0],
       },
     ],
   },
@@ -126,7 +129,7 @@ var races = [
         'weight': 'bis zu 130 KG',
         'maxAge': '~60 Jahre',
         'description':
-            'Die Orks sind reine Krieger, die das Kämpfen lieben. Sie sind sehr schmerzresistent und auch wenn sie viele für brutale Mörder halten eher auf ebenbürtige Kämpfe aus, anstatt sich an Hilflosen zu vergehen.\nStärke und ausdauer prägen sie, als auch der Umgang mit Zweihandwaffen.',
+            'Die Orks sind reine Krieger, die das Kämpfen lieben. \nSie sind sehr schmerzresistent und auch wenn sie viele für brutale Mörder halten eher auf ebenbürtige Kämpfe aus, anstatt sich an Hilflosen zu vergehen.\nStärke und Ausdauer prägen sie, als auch der Umgang mit Zweihandwaffen.',
         'racials': [
           '+Einschüchternd',
           '+Dunkelsicht',
