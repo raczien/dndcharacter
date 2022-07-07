@@ -7,7 +7,7 @@ var races = [
         'male': 'assets/argonian/male.jpg',
         'female': 'assets/argonian/female.jpg',
         'size': '1,73 - 1,81 Meter',
-        'weight': 'bis zu 85 KG',
+        'weight': 'bis zu 105 KG',
         'maxAge': '~70 Jahre',
         'description':
             'Die Argonier sind echsenartige, jedoch humanoide Wesen. \nSie können unter Wasser atmen und sind immun gegen Krankheiten und viele Gifte.\nIm Wasser und unebenen Gebieten sind sie recht flink und sie sind Experten in Sachen Natur und Kräuter. \nSie werden allerdings von manch anderen Rassen wegen ihres Aussehens verachtet.',
@@ -39,7 +39,7 @@ var races = [
           '+Maske der Wildnis',
           '+Intelligenz',
         ], // Str, Ges, Kon, Int, Wei, Cha
-        'boni': [0, 0, 0, 1, 0, 0],
+        'boni': [0, 0, 0, 1, 1, 0],
       },
       {
         'name': 'Dunkel- Elf(e)',
@@ -56,7 +56,28 @@ var races = [
           '+Fey Abstammung',
           '+Geschicklichkeit'
         ], // Str, Ges, Kon, Int, Wei, Cha
-        'boni': [0, 1, 0, 0, 0, 0],
+        'boni': [1, 1, 0, 0, 0, 0],
+      },
+    ],
+  },
+  {
+    'race': 'Githyanki',
+    'subraces': [
+      {
+        'name': 'Githyanki',
+        'male': 'assets/githyanki/male.jpg',
+        'female': 'assets/githyanki/female.jpg',
+        'size': '1,7 - 2,1 Meter',
+        'weight': 'bis zu 100 KG',
+        'maxAge': '~95',
+        'description':
+            'Die Githyanki sind eine Rasse, die von den Illithids versklavt wurden.\nZwar sind sie nun frei, jedoch hat dies eine Narbe in Form von passiver Aggressivität und Arroganz hinterlassen.\nVertrauen tun sie meist nur ihren Artgenossen.',
+        'racials': [
+          '+Starker Geist',
+          '+Sprachen',
+          '+Einzelkämpfer',
+        ], // Str, Ges, Kon, Int, Wei, Cha
+        'boni': [0, 0, 0, 2, 0, 1],
       },
     ],
   },
@@ -112,7 +133,7 @@ var races = [
         'racials': [
           '+Sprachen',
           '+Gechick',
-          '+1 Feat',
+          '+1 Auswahl',
         ], // Str, Ges, Kon, Int, Wei, Cha
         'boni': [0, 2, 0, 0, 1, 0],
       },
@@ -136,7 +157,7 @@ var races = [
           '+Extremer Wiederstand',
           '+Verherender Schlag',
         ], // Str, Ges, Kon, Int, Wei, Cha
-        'boni': [1, 0, 1, 0, 0, 0],
+        'boni': [2, 0, 1, 0, 0, 0],
       },
     ],
   },
@@ -151,13 +172,13 @@ var races = [
         'weight': 'bis zu 105 KG',
         'maxAge': '~100 Jahre',
         'description':
-            'Tieflinge sind halb Mensch, halb Dämon. Sie sind nicht von Natur aus böse, jedoch werden sie wegen ihres aussehens und ihrer magischen Kräfte oft für böse gehalten.\nSie sind immun gegen viele statusverändernde Magie und können auf kurze Sicht im dunkeln sehen. Sie sind extrem Stark, haben aber dafür nicht so starke Ausdauer.',
+            'Tieflinge sind halb Mensch, halb Dämon. Sie sind nicht von Natur aus böse, jedoch werden sie wegen ihres aussehens und ihrer magischen Kräfte oft für böse gehalten.\nSie sind immun gegen viele statusverändernde Magie und können auf kurze Sicht im dunkeln sehen.',
         'racials': [
           '+Dunkelsicht',
           '+Feuerresistenz',
           '+Thaumaturgie',
         ], // Str, Ges, Kon, Int, Wei, Cha
-        'boni': [0, 0, 0, 1, 0, 1],
+        'boni': [0, 0, 0, 0, 0, 2],
       },
     ],
   },
@@ -179,7 +200,7 @@ var races = [
           '+Zwergische Zähigkeit',
           '+Schwere Rüstung',
         ], // Str, Ges, Kon, Int, Wei, Cha
-        'boni': [0, 0, 0, 1, 1, 0],
+        'boni': [0, 0, 0, 1, 0, 1],
       },
       {
         'name': 'Berg- Zwerg',
@@ -218,9 +239,7 @@ var races = [
 ];
 
 // TODO: Skills Liste und dazu Klassen Feld (Array)
-// Attribute modificator = (Wert - 10) / 2
 // Attributes = [15, 14, 13, 12, 10, 8]
-// Armor = 10 + Geschickmod
 // Tools und Waffen gebe ich aus
 var classes = [
   {

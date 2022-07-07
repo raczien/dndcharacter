@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="raczien.dndcharacter">
    <application
-        android:label="dndcharacter"
+        android:label="DnD Character Creator"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
