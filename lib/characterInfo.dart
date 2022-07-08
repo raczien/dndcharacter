@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 import 'charactersheet.dart';
+import 'data.dart';
 
 class CharacterInfo extends StatefulWidget {
   const CharacterInfo({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class CharacterInfo extends StatefulWidget {
 class _CharacterInfoState extends State<CharacterInfo> {
   TextEditingController characterNameController = TextEditingController();
   TextEditingController playerNameController = TextEditingController();
-
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -122,12 +123,18 @@ class _CharacterInfoState extends State<CharacterInfo> {
           padding: const EdgeInsets.symmetric(vertical: 50),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(primary: Colors.green.shade900),
-            child: const Padding(
-              padding: EdgeInsets.all(5),
-              child: Text(
-                'Download PDF',
-                style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
-              ),
+            child: Padding(
+              padding: const EdgeInsets.all(5),
+              child: isLoading
+                  ? const SizedBox(
+                      height: 30,
+                      child: CircularProgressIndicator(),
+                    )
+                  : const Text(
+                      'Download PDF',
+                      style:
+                          TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                    ),
             ),
             onPressed: () async {
               if (characterNameController.text.isEmpty ||
@@ -141,11 +148,13 @@ class _CharacterInfoState extends State<CharacterInfo> {
                 ));
                 return;
               }
+              setState(() {
+                isLoading = true;
+              });
               var font20 = PdfStandardFont(PdfFontFamily.helvetica, 20);
               var font14 = PdfStandardFont(PdfFontFamily.helvetica, 14);
               var font16 = PdfStandardFont(PdfFontFamily.helvetica, 16);
               var xfont = PdfStandardFont(PdfFontFamily.helvetica, 15);
-
               var myPdf = await rootBundle.load('assets/charactersheet.pdf');
               final PdfDocument document =
                   PdfDocument(inputBytes: myPdf.buffer.asUint8List());
@@ -183,7 +192,6 @@ class _CharacterInfoState extends State<CharacterInfo> {
                   ? '+${CharacterSheet.boniValues[2]}'
                   : CharacterSheet.boniValues[2].toString();
               con.font = font20;
-
               PdfTextBoxField inte =
                   document.form.fields[33] as PdfTextBoxField;
               inte.text = CharacterSheet.boniValues[3] > 0
@@ -252,7 +260,7 @@ class _CharacterInfoState extends State<CharacterInfo> {
               PdfTextBoxField classe =
                   document.form.fields[0] as PdfTextBoxField;
               classe.text = CharacterSheet.classe;
-              classe.font = font20;
+              classe.font = font16;
 
               PdfTextBoxField proficiencyBonus =
                   document.form.fields[7] as PdfTextBoxField;
@@ -368,16 +376,33 @@ class _CharacterInfoState extends State<CharacterInfo> {
               racials.text = CharacterSheet.racials.join('\n');
               racials.font = font16;
 
-              form.flattenAllFields();
+              PdfTextBoxField skills =
+                  document.form.fields[50] as PdfTextBoxField;
+              skills.text = CharacterSheet.skills;
+              skills.font = font16;
 
+              if (getSkillNumberForClass(CharacterSheet.classe) > 0) {
+                PdfTextBoxField spells =
+                    document.form.fields[48] as PdfTextBoxField;
+                spells.text = CharacterSheet.spells.join('\n');
+                spells.font = font16;
+              }
+
+              form.flattenAllFields();
+              String pdfName = characterNameController.text
+                  .toLowerCase()
+                  .replaceAll(' ', '');
               final bytes = await document.save();
               AnchorElement(
                   href:
                       "data:application/octet-stream;charset=utf-16le;base64,${base64.encode(bytes)}")
-                ..setAttribute("download", "charactersheet.pdf")
+                ..setAttribute("download", "$pdfName.pdf")
                 ..click();
 
               document.dispose();
+              setState(() {
+                isLoading = false;
+              });
             },
           ),
         ),

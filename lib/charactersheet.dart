@@ -13,6 +13,8 @@ class CharacterSheet {
   static List<int> perks = [];
   static List<int> boniValues = [];
   static List<int> attributes = [];
+  static String skills = '';
+  static List<String> spells = [];
 
   static bool raceSet = false;
   static bool classSet = false;

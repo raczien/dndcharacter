@@ -10,6 +10,7 @@ class ClassPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScrollController sc = ScrollController();
     return Column(
       children: [
         if (CharacterSheet.classSet)
@@ -48,7 +49,7 @@ class ClassPageContent extends StatelessWidget {
           ),
         Expanded(
           child: SingleChildScrollView(
-            controller: ScrollController(),
+            controller: sc,
             child: Container(
               margin: const EdgeInsets.symmetric(vertical: 10),
               decoration: BoxDecoration(
@@ -62,6 +63,7 @@ class ClassPageContent extends StatelessWidget {
                 children: List.generate(
                   classes.length,
                   (index) => ExpansionTile(
+                    key: GlobalKey(),
                     expandedCrossAxisAlignment: CrossAxisAlignment.start,
                     trailing: Icon(
                       Icons.arrow_downward_outlined,
@@ -102,6 +104,55 @@ class ClassPageContent extends StatelessWidget {
                       ],
                     ),
                     children: [
+                      const Padding(
+                        padding: EdgeInsets.only(left: 100.0, right: 100),
+                        child: Text('Skills:',
+                            style: TextStyle(
+                                fontSize: 34,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 100.0, right: 100),
+                        child: Wrap(
+                          children: List.generate(
+                              (classes[index]['useables'] as List<int>).length,
+                              (idx) {
+                            List<int> skillnum =
+                                classes[index]['useables'] as List<int>;
+                            return Tooltip(
+                              textStyle: const TextStyle(
+                                  fontSize: 22, color: Colors.black),
+                              message: skills[skillnum[idx] - 1]['descr']
+                                  .toString()
+                                  .replaceAll('^^KLASSE^^',
+                                      classes[index]['name'] as String)
+                                  .replaceAll(
+                                      '^^NUM^^',
+                                      getSkillNumberForClass(
+                                              classes[index]['name'] as String)
+                                          .toString()),
+                              child: Card(
+                                color: Colors.teal.shade800,
+                                elevation: 8,
+                                shadowColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    skills[skillnum[idx] - 1]['name']
+                                        .toString(),
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
+                        ),
+                      ),
+                      const Divider(),
                       buildClassDetails(index, 'Beschreibung', 'description'),
                       const Divider(),
                       buildClassDetails(index, 'Schadenswürfel', 'dmgdice'),
@@ -175,7 +226,9 @@ class ClassPageContent extends StatelessWidget {
                                       as int) -
                                   (classes[index]['skills'] as List<dynamic>)
                                       .length;
-                              if (skillSetNum > 0) {
+                              if (skillSetNum > 0 ||
+                                  (classes[index]['useables'] as List<int>)
+                                      .contains(2)) {
                                 List<int> availableSkills = [];
                                 var classSkills =
                                     classes[index]['skills'] as List<dynamic>;
@@ -187,6 +240,7 @@ class ClassPageContent extends StatelessWidget {
                                 showDialog(
                                     context: context,
                                     builder: (context) {
+                                      sc.jumpTo(0);
                                       return SkillChooseDialog(
                                         skillSetNum: skillSetNum,
                                         availableSkills: availableSkills,
@@ -212,9 +266,25 @@ class ClassPageContent extends StatelessWidget {
                                 CharacterSheet.perks =
                                     classes[index]['skills'] as List<int>;
                                 CharacterSheet.classSet = true;
-                                if(CharacterSheet.raceSet) {
+                                CharacterSheet.skills = '';
+                                for (int i = 0;
+                                    i <
+                                        (classes[index]['useables']
+                                                as List<int>)
+                                            .length;
+                                    i++) {
+                                  List<int> skillnum =
+                                      classes[index]['useables'] as List<int>;
+                                  String skillName = skills[skillnum[i] - 1]
+                                          ['name']
+                                      .toString();
+                                  CharacterSheet.skills =
+                                      '${CharacterSheet.skills}\n ${skillName}';
+                                }
+                                sc.jumpTo(0);
+                                if (CharacterSheet.raceSet) {
                                   incrementPageIndex(true);
-                                }else{
+                                } else {
                                   incrementPageIndex(false);
                                 }
                               }
@@ -312,8 +382,8 @@ class _SkillChooseDialogState extends State<SkillChooseDialog> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Diese Klasse kann ${widget.skillSetNum} Fähigkeiten setzen.',
-              style: TextStyle(fontSize: 30),
+              'Diese Klasse kann ${widget.skillSetNum == 0 ? 'keine weiteren' : '${widget.skillSetNum} weitere'} Fähigkeiten setzen.',
+              style: const TextStyle(fontSize: 30),
             ),
             ...List.generate(
               widget.skillSetNum,
@@ -325,11 +395,31 @@ class _SkillChooseDialogState extends State<SkillChooseDialog> {
                 ),
               ),
             ),
+            const Divider(),
+            if ((classes[widget.classIndex]['useables'] as List<int>)
+                .contains(2))
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Zauber auswählen',
+                  style: TextStyle(fontSize: 30),
+                ),
+              ),
+            if ((classes[widget.classIndex]['useables'] as List<int>)
+                .contains(2))
+              ...List.generate(
+                getSkillNumberForClass(
+                    classes[widget.classIndex]['name'] as String),
+                (i) => SkillChooser(index: widget.classIndex),
+              ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
                 onPressed: () {
-                  if (savedSkills.length == widget.skillSetNum) {
+                  if ((savedSkills.length == widget.skillSetNum) &&
+                      (getSkillNumberForClass(
+                              classes[widget.classIndex]['name'] as String) ==
+                          CharacterSheet.spells.length)) {
                     List<int> allSkills = [];
                     var x =
                         classes[widget.classIndex]['skills'] as List<dynamic>;
@@ -354,12 +444,37 @@ class _SkillChooseDialogState extends State<SkillChooseDialog> {
                         classes[widget.classIndex]['weapons'] as String;
                     CharacterSheet.perks = allSkills;
                     CharacterSheet.classSet = true;
-                    if(CharacterSheet.raceSet) {
+
+                    CharacterSheet.skills = '';
+                    for (int i = 0;
+                        i <
+                            (classes[widget.classIndex]['useables']
+                                    as List<int>)
+                                .length;
+                        i++) {
+                      List<int> skillnum =
+                          classes[widget.classIndex]['useables'] as List<int>;
+                      String skillName =
+                          skills[skillnum[i] - 1]['name'].toString();
+                      CharacterSheet.skills =
+                          '${CharacterSheet.skills}\n ${skillName}';
+                    }
+
+                    if (CharacterSheet.raceSet) {
                       widget.incrementPageIndex(true);
-                    }else{
+                    } else {
                       widget.incrementPageIndex(false);
                     }
                     Navigator.pop(context);
+                    didReset = false;
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(
+                        "Bitte alle Fertigkeiten- und Zauberslots füllen.",
+                        style: TextStyle(
+                            fontSize: Responsive.isDesktop(context) ? 30 : 18),
+                      ),
+                    ));
                   }
                 },
                 style: ElevatedButton.styleFrom(primary: Colors.green.shade700),
@@ -393,6 +508,7 @@ class SkillDropDown extends StatefulWidget {
 class _SkillDropDownState extends State<SkillDropDown> {
   String selectedValue = 'Bitte auswählen';
   bool isLocked = false;
+
   @override
   Widget build(BuildContext context) {
     double fontSize = Responsive.isDesktop(context) ? 26.0 : 20.0;
@@ -442,6 +558,89 @@ class _SkillDropDownState extends State<SkillDropDown> {
               }
             });
           }),
+    );
+  }
+}
+
+bool didReset = false;
+
+class SkillChooser extends StatefulWidget {
+  final int index;
+
+  const SkillChooser({super.key, required this.index});
+
+  @override
+  _SkillChooserState createState() => _SkillChooserState();
+}
+
+class _SkillChooserState extends State<SkillChooser> {
+  String selectedValue = 'Bitte auswählen';
+  bool isLocked = false;
+  @override
+  Widget build(BuildContext context) {
+    double fontSize = Responsive.isDesktop(context) ? 26.0 : 20.0;
+    var availableSkills = getSkills(classes[widget.index]['name'] as String);
+    return IgnorePointer(
+      ignoring: isLocked,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: DropdownButton(
+            value: selectedValue,
+            items: [
+              ...List.generate(
+                availableSkills.length,
+                (k) => DropdownMenuItem(
+                  value: availableSkills[k]['name'] as String,
+                  child: Tooltip(
+                    message:
+                        '${availableSkills[k]['description']}\n\nReichweite:\n${availableSkills[k]['range']}\n\nEffektdauer:\n${availableSkills[k]['duration']}',
+                    textStyle:
+                        TextStyle(fontSize: fontSize, color: Colors.black),
+                    child: Text(
+                      availableSkills[k]['name'] as String,
+                      style: TextStyle(fontSize: fontSize),
+                    ),
+                  ),
+                ),
+              ),
+              const DropdownMenuItem(
+                value: 'Bitte auswählen',
+                child: Text(
+                  'Bitte auswählen',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+            ],
+            onChanged: (String? newValue) {
+              if ((CharacterSheet.classe != classes[widget.index]['name']) &&
+                  CharacterSheet.classSet &&
+                  !didReset) {
+                print('class change detected. Clearing saved spells.');
+                CharacterSheet.spells.clear();
+                didReset = true;
+              }
+              if (newValue != 'Bitte auswählen' && selectedValue != newValue) {
+                if (CharacterSheet.spells.contains(newValue)) {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    duration: const Duration(seconds: 2),
+                    content: Text(
+                      "Dieser Zauber ist bereits ausgewählt.",
+                      style: TextStyle(
+                          fontSize: Responsive.isDesktop(context) ? 30 : 18),
+                    ),
+                  ));
+                } else {
+                  setState(() {
+                    selectedValue = newValue!;
+                    CharacterSheet.spells.add(selectedValue);
+                  });
+                }
+              }
+            },
+          ),
+        ),
+      ),
     );
   }
 }

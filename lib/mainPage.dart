@@ -51,7 +51,9 @@ class _MainPageState extends State<MainPage> {
         child: Column(
           children: [
             Container(
-              decoration: BoxDecoration(color: Colors.teal.shade900),
+              decoration: BoxDecoration(
+                color: Colors.teal.shade900,
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
@@ -111,18 +113,18 @@ class _MainPageState extends State<MainPage> {
                     ),
                     InkWell(
                       onTap: () {
-                        if(CharacterSheet.raceSet) {
+                        if (CharacterSheet.raceSet) {
                           setState(() {
-                          index = 2;
-                        });
-                        }
-                        else{
+                            index = 2;
+                          });
+                        } else {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            duration: const Duration(seconds: 2),
                             content: Text(
                               "Bitte Rasse setzen.",
                               style: TextStyle(
                                   fontSize:
-                                  Responsive.isDesktop(context) ? 30 : 18),
+                                      Responsive.isDesktop(context) ? 30 : 18),
                             ),
                           ));
                         }
@@ -157,6 +159,7 @@ class _MainPageState extends State<MainPage> {
                           });
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            duration: const Duration(seconds: 2),
                             content: Text(
                               "Bitte Rasse, Klasse und Attribute setzen.",
                               style: TextStyle(

@@ -119,7 +119,7 @@ var races = [
           '+Ausdauernd',
           '+Stärke',
         ], // Str, Ges, Kon, Int, Wei, Cha
-        'boni': [1, 0, 1, 0, 0, 1],
+        'boni': [0, 0, 1, 0, 0, 2],
       },
       {
         'name': 'Gesetzlose(r)',
@@ -132,7 +132,7 @@ var races = [
             'Die Gesetzlosen brauchen keine Könige, Grafen oder andere Herrscher.\nSie sind nur sich selber treu und lassen sich von keiner höheren Autorität ihre hart verdienten (oder geklauten) Münzen durch Steuern wegnehmen.\nViele von ihnen sind oder waren schon einmal als Meuchelmörder oder Diebe tätig.',
         'racials': [
           '+Sprachen',
-          '+Gechick',
+          '+Geschick',
           '+1 Auswahl',
         ], // Str, Ges, Kon, Int, Wei, Cha
         'boni': [0, 2, 0, 0, 1, 0],
@@ -178,7 +178,7 @@ var races = [
           '+Feuerresistenz',
           '+Thaumaturgie',
         ], // Str, Ges, Kon, Int, Wei, Cha
-        'boni': [0, 0, 0, 0, 0, 2],
+        'boni': [0, 0, 0, 0, 2, 1],
       },
     ],
   },
@@ -238,9 +238,118 @@ var races = [
   },
 ];
 
-// TODO: Skills Liste und dazu Klassen Feld (Array)
-// Attributes = [15, 14, 13, 12, 10, 8]
-// Tools und Waffen gebe ich aus
+var skills = [
+  {
+    'id': 1,
+    'name': 'Kampfeszorn',
+    'descr':
+        'Im Kampf als Bonusaktion nutzbar.\nWährend Kampfeszorn aktiv ist (und du keine schwere Rüstung trägst) bekommst du folgende Vorteile:\n   - Vorteil auf Stärkewürfe\n   - Bonus bei Angriff mit einer STR Nahkampfwaffe\nFalls du ein Zauberwirker bist, kannst du sie nicht wirken, solange Kampfeszorn aktiv ist.\nErst nach einer lagen Rast erneut nutzbar.',
+  },
+  {
+    'id': 2,
+    'name': 'Zauber wirken',
+    'descr':
+        'Ein ^^KLASSE^^ kann Zauber wirken. Zauber sind Klassenspezifisch und als ^^KLASSE^^ kannst du dir ^^NUM^^ aussuchen.',
+  },
+  {
+    'id': 3,
+    'name': 'Bardische Inspiration',
+    'descr':
+        'Diese Fähigkeit lässt dich einen Mitspieler innerhalb 20 Metern inspirieren. \nDie inspirierten Spieler bekommen einen W6, welchen sie einsetzen können, um einen Fertigkeitscheck oder Rettungswurf zu verbessern.\nDu kannst diese Fähigkeit gleich deines Charisma MOD`s einsetzen, die nach einer langen Rast aufgefüllt werden.',
+  },
+  {
+    'id': 4,
+    'name': 'Druidisch',
+    'descr':
+        'Du kennst die geheime Sprache der Druiden und kannst diese einsetzen um geheime Botschaften zu verstecken.\nDu und andere Druiden erkennen diese sofort. Andere können diese Nachrichten nur mit +15 Wahrnehmungswurf erkennen und dechiffrieren.',
+  },
+  {
+    'id': 5,
+    'name': 'Kampfstil',
+    'descr':
+        'Du kannst einen Kampfstil auswählen. Diesen musst du fortan behalten.\n',
+  },
+  {
+    'id': 6,
+    'name': 'Zweiter Wind',
+    'descr':
+        'Du erhälst die Fähigkeit, dich mit einem W10 einmal zu heilen.Um die Fähigkeit erneut zu nutzen, musst du eine kurze Pause einlegen.',
+  },
+  {
+    'id': 7,
+    'name': 'Aufspüren',
+    'descr':
+        'Wenn du versuchst Fußspuren oder Ähnliches aufzuspüren, würfelst du mit Vorteil.',
+  },
+  {
+    'id': 8,
+    'name': 'Natürlicher Experte',
+    'descr':
+        'Du kannst dir ein Terrain aussuchen indem du Experte bist. \nWenn du dich in diesem Terrain befindest, ist dein Bonus auf Intelligenz und Charisma Boni versoppelt.',
+  },
+  {
+    'id': 9,
+    'name': 'Göttliche Hand',
+    'descr':
+        'Wenn du durch ein Monster einen Finalen Schlag erleidest, beschützt dich deine göttliche Gabe einmalig und negiert den Schaden.',
+  },
+  {
+    'id': 10,
+    'name': 'Waffenlose Kampfkunst',
+    'descr':
+        'Als Bonusaktion kannst du waffenlos angreifen und Schaden in Höhe eines w4 erwürfeln.',
+  },
+  {
+    'id': 11,
+    'name': 'Handauflegen',
+    'descr':
+        'Du kannst einen Humanoiden heilen (Charisma MOD * 5). \nAuch kannst du mit dieser Fähigkeit Krankheiten und Gifte heilen (auch mehrere mit EINEM Nutzen), indem du 5 deiner HP opferst.\nDiese Fähigkeit hat 2 Aufladungen und kann mit einer Langen Rast aufgefüllt werden.',
+  },
+  {
+    'id': 12,
+    'name': 'Göttliche Sinne',
+    'descr':
+        'Du kannst starke teuflische Gegner innerhalb 60 Meter wahrnehmen. Diese Fähigkeit geht nicht durch Wände.\nAufladungen: 1 + Cha MOD, die nach langer Rast wieder aufgeladen sind.',
+  },
+  {
+    'id': 13,
+    'name': 'Expertise',
+    'descr':
+        'Wähle eine Fertigkeit, in der du geübt bist. Verdoppel diese Boni dauerhaft für die Fertigkeitschecks.',
+  },
+  {
+    'id': 14,
+    'name': 'Überraschungsangriff',
+    'descr':
+        'Wenn du mit Vorteil angreifst, würfel einen w6 und richte dementsprechend Bonusschaden an.',
+  },
+  {
+    'id': 15,
+    'name': 'Ausweichrolle',
+    'descr':
+        'Du kannst eine Ausweichrolle ausführen, mit der du magische und physischen Attacken ausweichen kannst.',
+  },
+];
+
+int getSkillNumberForClass(String name) {
+  switch (name) {
+    case 'Barde':
+      return 2;
+    case 'Magier':
+      return 3;
+    case 'Druide':
+      return 4;
+    case 'Zauberer':
+      return 3;
+    case 'Hexenmeister':
+      return 2;
+    case 'Kleriker':
+      return 3;
+    default:
+      return 0;
+  }
+}
+
 var classes = [
   {
     'name': 'Barbar',
@@ -255,6 +364,7 @@ var classes = [
     'weapons': 'Zweihandaxt oder zwei Einhandäxte',
     'skills': [71, 66, 100],
     'skillNum': 3,
+    'useables': [1],
   },
   {
     'name': 'Barde',
@@ -269,6 +379,7 @@ var classes = [
     'weapons': 'Einhandwaffen',
     'skills': [], // any 3
     'skillNum': 3,
+    'useables': [2, 3],
   },
   {
     'name': 'Druide',
@@ -283,6 +394,7 @@ var classes = [
     'weapons': 'Keulen, Dolche, Speere, Stäbe',
     'skills': [67, 64, 68],
     'skillNum': 4,
+    'useables': [2, 4],
   },
   {
     'name': 'Gladiator',
@@ -297,13 +409,14 @@ var classes = [
     'weapons': 'Alle normale Nahkampfwaffen',
     'skills': [66, 59, 71],
     'skillNum': 3,
+    'useables': [5, 6],
   },
   {
     'name': 'Hexenmeister',
     'image': 'assets/classes/hexenmeister.jpeg',
     'description':
         'Ein Nutzer von Magie, die er aus einem Handel mit finsteren Gestalten bekommt, die nicht von dieser Welt sind.',
-    'dmgdice': 'd8',
+    'dmgdice': 'w8',
     'primaryStat': 'Charisma',
     'save': 'Weisheit & Charisma',
     'saveIds': [4, 5],
@@ -311,6 +424,7 @@ var classes = [
     'weapons': 'Magische Waffen, wie Stäbe, Keulen, Bücher',
     'skills': [61, 63, 74],
     'skillNum': 3,
+    'useables': [2],
   },
   {
     'name': 'Jäger',
@@ -325,6 +439,7 @@ var classes = [
     'weapons': 'Bögen oder Armbrüste und Einhandwaffe',
     'skills': [67, 59, 63, 100],
     'skillNum': 4,
+    'useables': [7, 8],
   },
   {
     'name': 'Kleriker',
@@ -339,13 +454,14 @@ var classes = [
     'weapons': 'Einfache Einhandwaffen',
     'skills': [62, 68, 74, 99],
     'skillNum': 4,
+    'useables': [2, 9],
   },
   {
     'name': 'Magier',
     'image': 'assets/classes/magier.jpeg',
     'description':
         'Ein Weiser und Gelehrter Magier, der die Fähigkeit besitzt die Struktur der Realität zu verändern.',
-    'dmgdice': 'd6',
+    'dmgdice': 'w6',
     'primaryStat': 'Intelligenz',
     'save': 'Intelligenz & Weisheit',
     'saveIds': [3, 4],
@@ -353,6 +469,7 @@ var classes = [
     'weapons': 'Dolche, Stäbe',
     'skills': [61, 63, 100, 62],
     'skillNum': 4,
+    'useables': [2],
   },
   {
     'name': 'Mönch',
@@ -367,6 +484,7 @@ var classes = [
     'weapons': 'Einfache Nahkampfwaffen, Faustwaffen',
     'skills': [59, 53, 65],
     'skillNum': 4,
+    'useables': [10, 15],
   },
   {
     'name': 'Paladin',
@@ -381,13 +499,14 @@ var classes = [
     'weapons': 'Einhandwaffen',
     'skills': [74, 73, 65],
     'skillNum': 3,
+    'useables': [11, 12],
   },
   {
     'name': 'Schurke',
     'image': 'assets/classes/schurke.jpeg',
     'description':
         'Ein Schurke, der Verstohlenheit und Tricks einsetzt, um Hindernisse und Feinde zu überwinden',
-    'dmgdice': 'd8',
+    'dmgdice': 'w8',
     'primaryStat': 'Geschicklichkeit',
     'save': 'Geschicklichkeit & Intelligenz',
     'saveIds': [1, 3],
@@ -395,13 +514,14 @@ var classes = [
     'weapons': 'Zwei Einhandwaffen',
     'skills': [72, 56, 100, 55],
     'skillNum': 4,
+    'useables': [13, 14],
   },
   {
     'name': 'Zauberer',
     'image': 'assets/classes/zauberer.jpeg',
     'description':
         'Ein Zauberwirker, der seine Magie durch eine Gabe oder aus seiner Vererbung bekam.',
-    'dmgdice': 'd6',
+    'dmgdice': 'w6',
     'primaryStat': 'Charisma',
     'save': 'Charisma & Konstitution',
     'saveIds': [2, 5],
@@ -409,6 +529,7 @@ var classes = [
     'weapons': 'Dolch, Stäbe',
     'skills': [61, 73, 63],
     'skillNum': 3,
+    'useables': [2],
   },
 ];
 
@@ -516,5 +637,239 @@ String getSkillName(int i) {
       return 'Wahrnehmung (Wei)';
     default:
       return 'notfound';
+  }
+}
+
+// TODO: NOTE: Alle bekommen ne Waffe von mir UND Magieklassen bekommen einen Standartzauber
+var bardSpells = [
+  {
+    'name': 'Fluch',
+    'description':
+        '3 Kreaturen deiner Wahl in Reichweitemüssen vor de nächsten Angriff einen Charisma Rettungswurf ablegen.\nWenn der Rettungswurf misslingt, wird ein W4 gewürfelt und der Schaden, den die Kreatur verursacht wird um den erwürfelten Wert verringert.',
+    'range': '10 m',
+    'duration': '1 Min',
+  },
+  {
+    'name': 'Charm',
+    'description':
+        'Du versuchst einen humanoiden zu bezaubern. Das Ziel muss einen Weisheits Rettungswurf machen.\nWenn dieser fehlschlägt ist das Ziel bezaubert und kann den Caster nicht Angreifen.\nAußerdem hat der Zaubernde immer Vorteil bei Würfen, wenn es um die Zielperson geht.\nWenn der Effekt endet, weiß die Person von der Bezauberung.',
+    'range': '10 m',
+    'duration': '1 Std',
+  },
+  {
+    'name': 'Wunden heilen',
+    'description':
+        'Eine Kreatur, die du berührst, regeneriert eine gewisse Anzahl an HP, die der SL festlegt.',
+    'range': 'Berührung',
+    'duration': 'Sofort',
+  },
+  {
+    'name': 'Federfall',
+    'description':
+        'Belege bis zu 5 Verbündete mit dem Zauber Federfall.\nFederfall negiert Fallschaden für ca. 20 Meter Fall.',
+    'range': '20 m',
+    'duration': '1 Min',
+  },
+  {
+    'name': 'Heilender Gesang',
+    'description':
+        'Alle sich im Kampf befindenden Freunde werden um einen W4 wurf geheilt.',
+    'range': '15 m',
+    'duration': 'Sofort',
+  },
+];
+var druidSpells = [
+  {
+    'name': 'Tier Freundschaft',
+    'description':
+        'Dieser Zauber lässt dich ein Tier überzeugen, dass du ihm nichts böses willst. Eveltuell hilft es dir sogar.\nUm den Zauber wirken zu können, muss sich das Tier in Sicht- und Hörweite befinden.',
+    'range': '12 m',
+    'duration': '6 Std',
+  },
+  {
+    'name': 'Wunden heilen',
+    'description':
+        'Eine Kreatur, die du berührst, regeneriert eine gewisse Anzahl an HP, die der SL festlegt.',
+    'range': 'Berührung',
+    'duration': 'Sofort',
+  },
+  {
+    'name': 'Tierbund',
+    'description':
+        'Dieser Zauberlässt bindet dich für 3 Minuten an ein Tier durch Telepatie. Dieses Tier kann in der Zeit Befehle von dir ausführen.',
+    'range': 'Berührung',
+    'duration': '3 Min',
+  },
+  {
+    'name': 'Sprung',
+    'description':
+        'Berühre eine Person um einmalig ihre Sprungdistanz zu verdoppeln.',
+    'range': 'Berührung',
+    'duration': '1 Aufladung',
+  },
+  {
+    'name': 'Essen Reinigen',
+    'description':
+        'Essen in einem 1 Meter Radius wird von allen Giften und Krankheiten befreit.',
+    'range': '2 m',
+    'duration': 'Sofort',
+  },
+  {
+    'name': 'Schlafen',
+    'description':
+        'Würfel einen W4 um diese Anzahl an Gegnern (von schwach nach stark aufsteigend) schlafen zu lassen.\nAufwachen tun die Ziele erst durch das Erleiden von Schaden, oder durch die Hilfe einer Kreatur (Ohrfeige, Gegenzauber..)',
+    'range': '25 m',
+    'duration': 'Sofort',
+  },
+  {
+    'name': 'Nebelwand',
+    'description':
+        'Ein dichter Nebel bildet sich an der gewünschten Stelle in einem 5 Meter Radius.',
+    'range': '40 m',
+    'duration': '30 Min',
+  }
+];
+var mageSpells = [
+  {
+    'name': 'Sprache verstehen',
+    'description':
+        'Für die Dauer dieses Zaubers kannst du den Inhalt gesprochener Worte verstehen. Auch Texte kannst du entziffern, wenn du sie dabei berührst.',
+    'range': 'Sich selbst',
+    'duration': '1 Std',
+  },
+  {
+    'name': 'Alarm',
+    'description':
+        'Belege eine Stelle deiner Wahl mit Magie. Sobald eine Kreatur diese Stelle passiert, weißt du automatisch bescheid.',
+    'range': '5 m',
+    'duration': '8 Std',
+  },
+  {
+    'name': 'Magie aufspüren',
+    'description':
+        'Spüre Fallen oder Zauber Magischer Natur innerhalb eines 10 Meter Radius auf.',
+    'range': '10 m',
+    'duration': 'Sofort',
+  },
+  {
+    'name': 'Eismesser',
+    'description':
+        'Du beschwörst einen Eis- Dolch, den du auf einen Gegner schleuderst.\nDas Messer richtet einen w10 Schaden an und explodiert dann in Splitter, die allen gegnern in einem 5m Radius w6 Schaden verursachen.',
+    'range': '25 m',
+    'duration': 'Sofort',
+  },
+  {
+    'name': 'Magische Geschosse',
+    'description':
+        'Du erschaffst 2 Magische Lanzen, die du auf Gegner deiner Wahl schießt.\nJede getroffene Lanze macht W10 +2 Schaden.',
+    'range': '25 m',
+    'duration': 'Sofort',
+  },
+];
+var warlockSpells = [
+  {
+    'name': 'Sprache verstehen',
+    'description':
+        'Für die Dauer dieses Zaubers kannst du den Inhalt gesprochener Worte verstehen. Auch Texte kannst du entziffern, wenn du sie dabei berührst.',
+    'range': 'Sich selbst',
+    'duration': '1 Std',
+  },
+  {
+    'name': 'Höllischer Tadel',
+    'description':
+        'Wenn ein gegner dir Schaden zufügt, mache einen Geschicklichkeitswurf. \nIst er Laut SL erfolgreich, beschwörst du bestrafende Flammen, die dem gegner 2xW10 Schaden zu.',
+    'range': '25 m',
+    'duration': 'Sofort',
+  },
+  {
+    'name': 'Imp',
+    'description':
+        'Beschwöre einen Kleinen Imp, der mit dir kämpft. Sein Leben und Schaden entscheidet der SL.',
+    'range': '1 m',
+    'duration': '6 Std',
+  },
+  {
+    'name': 'Lebensraub',
+    'description': 'Du kannst Gegnern einen W8 an Lebenspunkten klauen.',
+    'range': '20 m',
+    'duration': 'Sofort',
+  },
+];
+var wizardSpells = [
+  {
+    'name': 'Sprache verstehen',
+    'description':
+        'Für die Dauer dieses Zaubers kannst du den Inhalt gesprochener Worte verstehen. Auch Texte kannst du entziffern, wenn du sie dabei berührst.',
+    'range': 'Sich selbst',
+    'duration': '1 Std',
+  },
+  {
+    'name': 'Brennende Hände',
+    'description':
+        'Du hälst deine Daumen aneinander und Streckst die restlichen Finger Richtung Feinde. Du richtest für jeden Finger einem Feind (Je ein W4 Wurf) schafen zu.',
+    'range': '20 m',
+    'duration': 'Sofort',
+  },
+  {
+    'name': 'Donnerwelle',
+    'description':
+        'Eine donnernde Macht rast auf die Gegner vor dir zu. Diese müssen einen Konstitutions Rettungswurf machen.\nGelingt dieser nicht bekommen alle Gegner W10 Schaden und werden etwas zurückgeschleudert.\nGelingt dieser bekommen sie nur halben Schaden und werden nicht weggeschleudert.',
+    'range': '20 m',
+    'duration': 'Sofort',
+  },
+  {
+    'name': 'Magisches Schild',
+    'description': 'Für eine Runde bekommst du +5 Rüstung.',
+    'range': 'Sich selbst',
+    'duration': 'Sofort',
+  },
+];
+var clericSpells = [
+  {
+    'name': 'Wunden heilen',
+    'description':
+        'Eine Kreatur, die du berührst, regeneriert eine gewisse Anzahl an HP, die der SL festlegt.',
+    'range': 'Berührung',
+    'duration': 'Sofort',
+  },
+  {
+    'name': 'Heilender Segen',
+    'description':
+        'Alle sich im Kampf befindenden Freunde werden um einen W4 wurf geheilt.',
+    'range': '15 m',
+    'duration': 'Sofort',
+  },
+  {
+    'name': 'Heroismus',
+    'description':
+        'Berühre einen Verbündeten Um ihn immun gegen \"Verängstigen\" zu machen und ihm 1 W10 Wurf temporäre HP zu geben.',
+    'range': 'Berührung',
+    'duration': '3 Min',
+  },
+  {
+    'name': 'Wegweiser',
+    'description':
+        'Du kannst nach Absprache eine Person mit einem Zauber belegen. Das Ziel kann dann auf einen Fertigkeitscheck einen W4 addieren.\nDannach löst sich der Zauber auf.',
+    'range': 'Berührung',
+    'duration': '1 Aktion',
+  },
+];
+
+List<Map<String, Object>> getSkills(String classe) {
+  switch (classe) {
+    case "Barde":
+      return bardSpells;
+    case "Druide":
+      return druidSpells;
+    case "Hexenmeister":
+      return warlockSpells;
+    case "Kleriker":
+      return clericSpells;
+    case "Magier":
+      return mageSpells;
+    case "Zauberer":
+      return wizardSpells;
+    default:
+      return [];
   }
 }
